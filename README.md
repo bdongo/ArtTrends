@@ -1,5 +1,5 @@
 # fashiontrends
-Functionality of my project, Fashion and Trends, is to visualize image data. My main functionality is to have the user interact with an array of pictures that expand where the user is hovering.
+Functionality of my project, Art and Trends, is to visualize image data. My main functionality is to have the user interact with an array of pictures that expand where the user is hovering.
 
 
 
