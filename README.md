@@ -29,7 +29,7 @@ __Technologies, Libraries, APIs:__
 ~~Tumblr API~~
 D3 JS
 HARVARD Museum API
-MET Museum API
+~~MET Museum API~~
 CLEVELAND Museum API
 BROOKLYN Museum API
 CHICAGO Museum API
