@@ -1,0 +1,24 @@
+#top-bar {
+    width: auto;
+    height: 50px;
+    background-color: black;
+}
+
+#left-bar {
+    height: auto;
+    // ^^ problem
+    width: 50px;
+    background-color: blue;
+    
+}
+
+#left-bar > div {
+    height: auto;
+    width: 50px;
+    background-color: blue;
+}
+
+/* div {
+    background-color: black;
+    height: 20px;
+} */
