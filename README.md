@@ -21,7 +21,7 @@ Production README
 __Wireframes:__
 
 ![wireframe image]
-<!-- (/wireframe.png) -->
+(wireframe.png)
 
 
 
