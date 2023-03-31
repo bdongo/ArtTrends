@@ -20,8 +20,7 @@ Production README
 
 __Wireframes:__
 
-![wireframe image]
-(wireframe.png)
+![wireframe image](assets/wireframe.png)
 
 
 
