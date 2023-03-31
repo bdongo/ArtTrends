@@ -26,8 +26,13 @@ __Wireframes:__
 
 __Technologies, Libraries, APIs:__
 
-Tumblr API
+~~Tumblr API~~
 D3 JS
+HARVARD Museum API
+MET Museum API
+CLEVELAND Museum API
+BROOKLYN Museum API
+CHICAGO Museum API
 
 
 
@@ -35,12 +40,12 @@ D3 JS
 __Implementation Timeline:__
 
 __Friday Afternoon & Weekend:__
-Friday and the weekend will be to nail down the visual layout of my project. I would like my html, css and static elements as finalized as possible before i move onto problem solving the dynamic elements. 
+Friday and the weekend will be to nail down the visual layout of my project. I would like my html, css and static elements as finalized as possible before I move onto problem solving the dynamic elements. I will also create and Art Object class to make them uniform in attributes, if I am pulling them from different APIs.
 The goal over the weekend is to familiarize myself with new tools, mainly D3 to try and a get a start of the mockup of the main hovering scroll feature of the project.
  
 
 ***Monday:***
-Continue working on my main feature as well as figure out to to make a moving top nav bar.
+Continue working on my main feature as well as figure out to to make a moving top nav bar. 
 
 ***Tuesday:***
 Continue and try to finalize main visualizer. Start the abstracted static images to move through top bar.
@@ -54,5 +59,5 @@ Polishing everything and full testing for presentations.
 
 __BONUS:__
 
--Quick sort like functionality when a picture is clicked other pictures are moved left or right according to _____
+-Quick sort like functionality when a picture is clicked other pictures are moved left or right according to date.
 
