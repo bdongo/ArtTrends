@@ -14,7 +14,7 @@ __In Fashion and Trends, users will be able to:__
 
 In addition, this project will include:
 
-Production README
+-Production README
 
 
 
@@ -27,11 +27,17 @@ __Wireframes:__
 __Technologies, Libraries, APIs:__
 
 ~~Tumblr API~~
+
 D3 JS
+
 HARVARD Museum API
+
 ~~MET Museum API~~
+
 CLEVELAND Museum API
+
 BROOKLYN Museum API
+
 CHICAGO Museum API
 
 
