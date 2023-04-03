@@ -1,17 +1,17 @@
 #top-bar {
     display: flex;
     width: auto;
-    height: 70px;
+    height: 100px;
     // background-color: rgb(43, 40, 40);
     // border-bottom: 1px rgb(208, 208, 208) solid;
-    background-image: linear-gradient(to right, rgb(43, 40, 40), 60%,
+    background-image: linear-gradient(to right, rgb(43, 40, 40), 70%,
                 rgb(67, 66, 66));
   
 }
 
 #corner{
     height: inherit;
-    width: 70px;
+    width: 75px;
     // background-color: rgb(43, 40, 40);
 }
 
@@ -19,21 +19,21 @@
     width: 80%;
     height: inherit;
     border-bottom-style: solid;
-    border-bottom-width: 2px;
-    border-image: linear-gradient(to right, rgb(208, 208, 208), 60%, rgb(67, 66, 66)) 1;
+    border-bottom-width: 3px;
+    border-image: linear-gradient(to right, rgb(77, 76, 76), 80%, rgb(67, 66, 66)) 1;
         
 }
 
 
 #left-bar {
-    height: 670px;
-    // height: 80%;
-    width: 70px;
-    border-image: linear-gradient(rgb(208, 208, 208), 60%, #434242) 1 100%;
-    border-right-width: 2px;
+    height: 87vh;
+    width: 75px;
+    // border-image: linear-gradient(rgb(208, 208, 208), 80%, #434242) 1 100%; old lighter border
+    border-image: linear-gradient(rgb(77, 76, 76), 80%, #434242) 1 100%;
+    border-right-width: 3px;
     border-right-style: solid;
     background-color: rgb(43, 40, 40);
-    background-image: linear-gradient(rgb(43, 40, 40), 60%,  rgb(67, 66, 66));
+    background-image: linear-gradient(rgb(43, 40, 40), 70%,  rgb(67, 66, 66));
 
 }
 

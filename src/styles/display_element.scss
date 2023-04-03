@@ -1,0 +1,31 @@
+#display-element {
+    position: fixed;
+    top: 45vh;
+    left: 20vw;
+
+    background-color: rgb(43, 40, 40);
+    // background-color: white;
+    height: 350px;
+    width: 67vw;
+    // display: flex;   
+    // overflow: clip;
+    // overflow-clip-margin: 20px;
+    border-width: 2px;
+    border-style: solid;
+    border-image: linear-gradient(to right, rgb(43, 40, 40), 80%, rgb(67, 66, 66)) 1;
+}
+
+img {
+    height: inherit;
+}
+
+#display-element:first-child {
+    position: absolute;
+    left: 0px;
+}
+
+#display-element > img {
+    position: relative;
+    // left: 10px;
+}
+
