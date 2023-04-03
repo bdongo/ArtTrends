@@ -7,7 +7,8 @@
     // background-color: white;
     height: 350px;
     width: 67vw;
-    // display: flex;   
+    display: flex;   
+    justify-content: space-between;
     // overflow: clip;
     // overflow-clip-margin: 20px;
     border-width: 2px;
@@ -17,6 +18,11 @@
 
 img {
     height: inherit;
+    width: 60px;
+}
+
+img:hover {
+    height: 370px
 }
 
 #display-element:first-child {

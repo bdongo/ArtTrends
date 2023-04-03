@@ -1,0 +1,31 @@
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+h3 {
+
+}
+
+#menu-title {
+    // font-size: 32px;
+    // font-style: normal;
+    // color: rgb(208, 208, 208);
+}
+
+
+#above-display-text {
+    position: fixed;
+    top: 35vh;
+    left: 20vw;
+}
+
+#below-dispay-text{
+    position: fixed;
+    top: 85vh;
+    left: 50vw;
+    text-align: end;
+}

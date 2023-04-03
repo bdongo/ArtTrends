@@ -1,6 +1,14 @@
 /*!*************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
   \*************************************************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@300&display=swap);
+/*!*****************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss (1) ***!
+  \*****************************************************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Suranna&display=swap);
+/*!*****************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss (2) ***!
+  \*****************************************************************************************************************************************/
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -139,8 +147,8 @@ table {
 #top-bar {
   display: flex;
   width: auto;
-  height: 100px;
-  background-image: linear-gradient(to right, rgb(43, 40, 40), 70%, rgb(67, 66, 66));
+  height: 150px;
+  background-color: rgb(43, 40, 40);
 }
 
 #corner {
@@ -154,10 +162,12 @@ table {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-image: linear-gradient(to right, rgb(77, 76, 76), 80%, rgb(67, 66, 66)) 1;
+  display: flex;
+  align-items: center;
 }
 
 #left-bar {
-  height: 87vh;
+  height: 60vh;
   width: 75px;
   border-image: linear-gradient(rgb(77, 76, 76), 80%, #434242) 1 100%;
   border-right-width: 3px;
@@ -168,6 +178,9 @@ table {
 
 body {
   background-color: rgb(67, 66, 66);
+  font-family: "Suranna";
+  font-style: normal;
+  color: rgb(208, 208, 208);
 }
 
 /* div {
@@ -181,6 +194,8 @@ body {
   background-color: rgb(43, 40, 40);
   height: 350px;
   width: 67vw;
+  display: flex;
+  justify-content: space-between;
   border-width: 2px;
   border-style: solid;
   border-image: linear-gradient(to right, rgb(43, 40, 40), 80%, rgb(67, 66, 66)) 1;
@@ -188,6 +203,11 @@ body {
 
 img {
   height: inherit;
+  width: 60px;
+}
+
+img:hover {
+  height: 370px;
 }
 
 #display-element:first-child {
@@ -197,4 +217,25 @@ img {
 
 #display-element > img {
   position: relative;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+#above-display-text {
+  position: fixed;
+  top: 35vh;
+  left: 20vw;
+}
+
+#below-dispay-text {
+  position: fixed;
+  top: 85vh;
+  left: 50vw;
+  text-align: end;
 }

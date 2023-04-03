@@ -1,11 +1,10 @@
 #top-bar {
     display: flex;
     width: auto;
-    height: 100px;
-    // background-color: rgb(43, 40, 40);
+    height: 150px;
+    background-color: rgb(43, 40, 40);
     // border-bottom: 1px rgb(208, 208, 208) solid;
-    background-image: linear-gradient(to right, rgb(43, 40, 40), 70%,
-                rgb(67, 66, 66));
+    // background-image: linear-gradient(to right, rgb(43, 40, 40), 70%, rgb(67, 66, 66));
   
 }
 
@@ -21,12 +20,16 @@
     border-bottom-style: solid;
     border-bottom-width: 3px;
     border-image: linear-gradient(to right, rgb(77, 76, 76), 80%, rgb(67, 66, 66)) 1;
+    display: flex;
+    align-items: center;
         
 }
 
 
+
+
 #left-bar {
-    height: 87vh;
+    height: 60vh;
     width: 75px;
     // border-image: linear-gradient(rgb(208, 208, 208), 80%, #434242) 1 100%; old lighter border
     border-image: linear-gradient(rgb(77, 76, 76), 80%, #434242) 1 100%;
@@ -40,6 +43,9 @@
 body {
     background-color: rgb(67, 66, 66);
     // background-color: black;
+    font-family: 'Suranna';
+    font-style: normal;
+    color: rgb(208, 208, 208);
 }
 /* div {
     background-color: black;
