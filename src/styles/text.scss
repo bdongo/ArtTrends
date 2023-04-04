@@ -18,14 +18,17 @@ h3 {
 
 
 #above-display-text {
-    position: fixed;
-    top: 35vh;
-    left: 20vw;
+    // position: fixed;
+    // top: 35vh;
+    // left: 20vw;
+    padding-top: 5px;
 }
 
 #below-dispay-text{
-    position: fixed;
-    top: 85vh;
-    left: 50vw;
+    // position: fixed;
+    // top: 85vh;
+    // left: 55vw;
+    padding-bottom: 10px;
     text-align: end;
+    font-style: italic;
 }

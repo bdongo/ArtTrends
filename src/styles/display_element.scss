@@ -1,16 +1,27 @@
 #display-element {
     position: fixed;
-    top: 45vh;
+    top: 32vh;
     left: 20vw;
-
-    background-color: rgb(43, 40, 40);
-    // background-color: white;
-    height: 350px;
+    
+    height: 490px;
     width: 67vw;
     display: flex;   
+    flex-direction: column;
     justify-content: space-between;
     // overflow: clip;
     // overflow-clip-margin: 20px;
+    border-width: 2px;
+    border-style: solid;
+    border-image: linear-gradient(to right, rgb(43, 40, 40), 80%, rgb(67, 66, 66)) 1;
+
+}
+
+#img-container {
+    background-color: rgb(43, 40, 40);
+    height: 350px;
+    width: 67vw;
+    // display: flex;
+    // justify-content: space-between;
     border-width: 2px;
     border-style: solid;
     border-image: linear-gradient(to right, rgb(43, 40, 40), 80%, rgb(67, 66, 66)) 1;
@@ -21,17 +32,39 @@ img {
     width: 60px;
 }
 
-img:hover {
-    height: 370px
-}
-
-#display-element:first-child {
+svg {
     position: absolute;
-    left: 0px;
+    top: 89px;
+    // 89px
+    left: 1px;
+    // background-color: rgb(208, 208, 208);
 }
 
-#display-element > img {
-    position: relative;
-    // left: 10px;
+
+rect {
+    fill: rgb(208, 208, 208);
 }
+
+rect:hover {
+    width: 100px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+ 
+image:hover {
+    width: auto;
+    height: 350px;
+    z-index: index 20;
+}
+
+
+
+
+
+
 

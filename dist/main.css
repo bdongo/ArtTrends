@@ -100,6 +100,7 @@ video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  color: inherit;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -144,6 +145,13 @@ table {
   border-spacing: 0;
 }
 
+body {
+  background-color: rgb(67, 66, 66);
+  font-family: "Suranna";
+  font-style: normal;
+  color: rgb(208, 208, 208);
+}
+
 #top-bar {
   display: flex;
   width: auto;
@@ -166,6 +174,18 @@ table {
   align-items: center;
 }
 
+#link-list {
+  position: absolute;
+  left: 54vw;
+  width: 45vw;
+  display: flex;
+}
+
+#link-list > li {
+  padding-top: 5px;
+  padding-left: 6px;
+}
+
 #left-bar {
   height: 60vh;
   width: 75px;
@@ -176,26 +196,28 @@ table {
   background-image: linear-gradient(rgb(43, 40, 40), 70%, rgb(67, 66, 66));
 }
 
-body {
-  background-color: rgb(67, 66, 66);
-  font-family: "Suranna";
-  font-style: normal;
-  color: rgb(208, 208, 208);
-}
-
 /* div {
     background-color: black;
     height: 20px;
 } */
 #display-element {
   position: fixed;
-  top: 45vh;
+  top: 32vh;
   left: 20vw;
+  height: 490px;
+  width: 67vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(to right, rgb(43, 40, 40), 80%, rgb(67, 66, 66)) 1;
+}
+
+#img-container {
   background-color: rgb(43, 40, 40);
   height: 350px;
   width: 67vw;
-  display: flex;
-  justify-content: space-between;
   border-width: 2px;
   border-style: solid;
   border-image: linear-gradient(to right, rgb(43, 40, 40), 80%, rgb(67, 66, 66)) 1;
@@ -206,17 +228,28 @@ img {
   width: 60px;
 }
 
-img:hover {
-  height: 370px;
-}
-
-#display-element:first-child {
+svg {
   position: absolute;
-  left: 0px;
+  top: 89px;
+  left: 1px;
 }
 
-#display-element > img {
-  position: relative;
+rect {
+  fill: rgb(208, 208, 208);
+}
+
+rect:hover {
+  width: 100px;
+}
+
+.hidden {
+  display: none;
+}
+
+image:hover {
+  width: auto;
+  height: 350px;
+  z-index: index 20;
 }
 
 h1 {
@@ -228,14 +261,11 @@ h2 {
 }
 
 #above-display-text {
-  position: fixed;
-  top: 35vh;
-  left: 20vw;
+  padding-top: 5px;
 }
 
 #below-dispay-text {
-  position: fixed;
-  top: 85vh;
-  left: 50vw;
+  padding-bottom: 10px;
   text-align: end;
+  font-style: italic;
 }

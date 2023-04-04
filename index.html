@@ -8,18 +8,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./dist/main.css">
-    <script src="./dist/main.js"></script>
+    <script src="./dist/main.js" defer></script>
     <title>Document</title>
 </head>
 <body>
     <div id="top-bar">
         <div id="corner"></div>
+        <ul id="link-list">
+            <li><a href="https://github.com/harvardartmuseums/api-docs">Harvard Art Museums API</a></li>
+            <li><a href="https://openaccess-api.clevelandart.org/">The Cleveland Museum of Art API</a></li>
+            <li><a href="https://api.artic.edu/docs/#introduction">Art Institute of Chicago API</a></li>
+        </ul>
         <div id="menu-border">
-            <div>
-                <ul>
-                    
-                </ul>
-            </div>
             <div id="menu-title">
                 <h1>Art Fashion Trends</h1>
             </div>
@@ -30,24 +30,25 @@
         <div></div>
     </div>
 
-    <div id="above-display-text">
-        <h2>Subtitle</h2>
-        <br>
-        <div>
-            Information blurb for the page will go here and 
-             <br>
-            hopefully take a good amount of space but not too much space.
+    <div id="display-element">
+        <div id="above-display-text">
+            <h2>Subtitle</h2>
+            <br>
+            <div>
+                Information blurb for the page will go here
+                <br>
+                and hopefully take a good amount of space but not too much space.
+            </div>
+        </div>
+
+        <div id="img-container"></div>
+
+        <div id="below-dispay-text">
+            Text below the element will be postioned here if needed,
+            <br>
+            I want to see the layout in italics.
         </div>
     </div>
 
-    <div id="display-element"></div>
-
-    <div id="below-dispay-text">
-        Text below the element will be postioned here if needed,
-        <br>
-        I want to see the layout.
-    </div>
-    
-    
 </body>
 </html>
