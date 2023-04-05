@@ -36,12 +36,12 @@ addEventListener("resize", (e) => {
     createCanvas
         .attr('width', width);
 
-    svg
-        .attr('width', width);
+    // svg
+    //     .attr('width', width);
 
-    svg.selectAll('rect')
-        .attr('x', d => d * (width / imgNum))
-        .attr('width', width / imgNum - 4);
+    // svg.selectAll('rect')
+    //     .attr('x', d => d * (width / imgNum))
+    //     .attr('width', width / imgNum - 4);
 
     createCanvas
         .selectAll("img")
@@ -62,7 +62,7 @@ const render = () => {
         let imgTest = new Image()
         imgTest.onload = () => {
             ctx.drawImage(imgTest, 
-                300 + i * 10, 0, width / imgNum - 3, height,
+                300 + i * 10, 100, width / imgNum - 3, height,
                 i * (width / imgNum), 0, width / imgNum - 4, height)
         }
         imgTest.src = "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg"
@@ -73,37 +73,46 @@ const render = () => {
 render()
 
 
-const svg = d3.select('div#img-container')
-    .append('svg')
-    .attr('width', width)
-    .attr('height', height);
-
-svg
-    .on('mouseover', (e) => {
-        console.log(e)
-        e.target.classed("hidden", false);
-    })
-    .on('mouseout', (e) => {
-        e.classed("hidden", true)
-    });
-
-// svg
-//     .selectAll('rect')
-//     .data(d3.range(imgNum))
-//     .join('rect')
-//     .attr('x', d => d * (width / imgNum))
-//     .attr('width', width / imgNum - 4)
+// const svg = d3.select('div#img-container')
+//     .append('svg')
+//     .attr('width', width)
 //     .attr('height', height);
 
-svg
-    .selectAll("image")
-    .data(d3.range(imgNum))
-    .join('image')
-    .attr('href', "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg")
-    .attr('x', d => d * (width / imgNum))
-    .attr('width', width / imgNum - 4)
-    .attr("class", "hidden")
-    .attr('height', height);
+// svg
+//     .on('mouseover', (e) => {
+//         console.log(e)
+//         e.target.classed("hidden", false);
+//     })
+//     .on('mouseout', (e) => {
+//         e.classed("hidden", true)
+//     });
+// const imageListener = document.querySelectorAll("image")
+// const imageListener = d3.selectAll("image")
+// console.log(imageListener, "images")
+
+function mousePos(canvas, e) {
+    let bRect = canvas.getBoundingClientRect();
+    console.log(e)
+    console.log(bRect, "brect")
+}
+
+display.addEventListener("click", (e) => {
+    console.log(e.target, "target");
+    mousePos(createCanvas.node(), e)
+})
+
+//  
+
+
+// svg
+//     .selectAll("img")
+//     .data(d3.range(imgNum))
+//     .join('img')
+//     .attr('href', "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg")
+//     .attr('x', d => d * (width / imgNum))
+//     .attr('width', width / imgNum - 4)
+//     // .attr("class", "hidden")
+//     .attr('height', height);
 
 // const mask = svg.append('mask')
 //     .attr("id", "clipping-mask");
