@@ -24,7 +24,9 @@
     // justify-content: space-between;
     border-width: 2px;
     border-style: solid;
-    border-image: linear-gradient(to right, rgb(43, 40, 40), 80%, rgb(67, 66, 66)) 1;
+    border-color: rgb(43, 40, 40);
+    border-right: none;
+    // border-image: linear-gradient(to right, rgb(43, 40, 40), 80%, rgb(67, 66, 66)) 1;
 }
 
 img {
@@ -52,6 +54,7 @@ rect:hover {
 .hidden {
     display: none;
 }
+
 
 
 

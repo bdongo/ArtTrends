@@ -19,7 +19,17 @@ export const harvard = async (e) => {
             if (dateCheck === 0) {
                 dateCheck = 1
             }
-            output.push({ url: data.records[i].baseimageurl, date: dateCheck })
+            let sourceInfo;
+            if (data.records[i].copyright) {
+                sourceInfo = `Harvard Art Museums API/ ${data.records[i].copyright}`
+            } else {
+                sourceInfo = "Harvard Art Museums API"
+            }
+            output.push({ 
+                url: data.records[i].baseimageurl,
+                date: dateCheck,
+                source: sourceInfo
+            })
             // data.records[i].datebegin
         }
     }
@@ -52,7 +62,17 @@ export const cleveland = async (e) => {
             if (dateCheck === 0) {
                 dateCheck = 1
             }
-            output.push({ url: data.data[i].images.web.url, date: dateCheck })
+            let sourceInfo;
+            if (data.data[i].creditline) {
+                sourceInfo = `The Cleveland Museum of Art API/ ${data.data[i].creditline}`
+            } else {
+                sourceInfo = "The Cleveland Museum of Art API"
+            }
+            output.push({ 
+                url: data.data[i].images.web.url, 
+                date: dateCheck,
+                source: sourceInfo
+            })
         }
     }
 
@@ -76,8 +96,18 @@ export const chicago2 = async (url) => {
     // console.log(data, "chicago2 data")
     let dateInfo =  data.data.date_start
     let linkStr = `${data.config.iiif_url}/${data.data.image_id}/full/843,/0/default.jpg`
+    let sourceInfo;
+    if (data.data.credit_line) {
+        sourceInfo = `Art Institute of Chicago API/ ${data.data.credit_line}`
+    } else {
+        sourceInfo = "Art Institute of Chicago API"
+    }
     // console.log(linkStr, "link")
-    return {url: linkStr, date: dateInfo}
+    return {
+            url: linkStr, 
+            date: dateInfo,
+            source: sourceInfo
+        }
 }
 
 // ^^to get each img link

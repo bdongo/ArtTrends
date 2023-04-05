@@ -52,7 +52,7 @@ const render = () => {
         let imgTest = new Image()
         imgTest.onload = () => {
             ctx.drawImage(imgTest, 
-                300 + i * 10, 100, width / imgNum - 3, height,
+                300, 100, width / imgNum - 3, height,
                 i * (width / imgNum), 0, width / imgNum - 4, height)
         }
         imgTest.src = photos[i].url
@@ -78,59 +78,49 @@ function redraw(focus) {
     let x = 0;
 
     for (let j = 0; j < imgNum; j++) {
-        let imgTest = new Image()
+        let imgTest = new Image("auto", height)
 
         if (j === focus) {
             imgTest.onload = () => {
                 ctx.drawImage(imgTest,
-                    300 + j * 10, 100, (width * 0.3) - 3, height,
+                    200, 100, (width * 0.3) - 3, height,
                     x, 0, (width * 0.3) - 4, height);
                 x += (width * 0.3);
-                // console.log(j, "j")
-                // console.log(x, "x")
-                // console.log((width * 0.3), "img width")
             }
             imgTest.src = photos[j].url;
             // imgTest.src = "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg"
         } else if (j === focus - 1 || j === focus + 1) {
             imgTest.onload = () => {
                 ctx.drawImage(imgTest,
-                    300 + j * 10, 100, (width * 0.1) - 3, height,
+                    250, 100, (width * 0.1) - 3, height,
                     x, 0, (width * 0.1) - 4, height);
                 x += (width * 0.1);
-                // console.log(j, "j")
-                // console.log(x, "x")
-                // console.log((width * 0.1), "img width")
             }
             imgTest.src = photos[j].url;
             // imgTest.src = "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg"
         } else if (j === focus - 2 || j === focus + 2) {
             imgTest.onload = () => {
                 ctx.drawImage(imgTest,
-                    300 + j * 10, 100, (width * 0.07) - 3, height,
+                   250, 100, (width * 0.07) - 3, height,
                     x, 0, (width * 0.07) - 4, height)
                 x += (width * 0.07);
-                // console.log(j, "j")
-                // console.log(x, "x")
-                // console.log((width * 0.07), "img width")
             }
             imgTest.src = photos[j].url;
             // imgTest.src = "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg"
         } else {
             imgTest.onload = () => {
                 ctx.drawImage(imgTest,
-                    300 + j * 10, 150, (width * 0.0189) - 3, height,
+                    300, 150, (width * 0.0189) - 3, height,
                     x, 0, (width * 0.0189) - 4, height);
                 x += (width * 0.0189);
-                // console.log(j, "j")
-                // console.log(x, "x")
-                // console.log((width * 0.0189), "img width")
             }
             imgTest.src = photos[j].url;
             // imgTest.src = "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg"
         }
     }
 }
+
+let clicked = false
 
 display.addEventListener("click", (e) => {
     // console.log(e.target, "target");
@@ -145,11 +135,15 @@ display.addEventListener("click", (e) => {
     console.log(focus)
 
     redraw(focus)
+    clicked = true;
 
 })
 
 display.addEventListener("mouseout", (e) => {
-    render()
+    if (clicked){
+        render()
+        clicked = false;
+    }
 })
 
 
