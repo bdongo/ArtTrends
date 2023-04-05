@@ -246,12 +246,6 @@ rect:hover {
   display: none;
 }
 
-image:hover {
-  width: auto;
-  height: 350px;
-  z-index: index 20;
-}
-
 h1 {
   font-size: 32px;
 }

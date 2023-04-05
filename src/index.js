@@ -31,7 +31,7 @@ const createCanvas = d3.select('div#img-container')
 
 
 addEventListener("resize", (e) => {
-    console.log(window.innerWidth, "assigning innerwidth");
+    // console.log(window.innerWidth, "assigning innerwidth");
     width = window.innerWidth * 0.67;
     createCanvas
         .attr('width', width);
@@ -43,10 +43,10 @@ addEventListener("resize", (e) => {
     //     .attr('x', d => d * (width / imgNum))
     //     .attr('width', width / imgNum - 4);
 
-    createCanvas
-        .selectAll("img")
-        .attr('x', d => d * (width / imgNum))
-        .attr('width', width / imgNum - 4);
+    // createCanvas
+    //     .selectAll("img")
+    //     .attr('x', d => d * (width / imgNum))
+    //     .attr('width', width / imgNum - 4);
 
     render();
 
@@ -92,17 +92,90 @@ render()
 
 function mousePos(canvas, e) {
     let bRect = canvas.getBoundingClientRect();
-    console.log(e)
-    console.log(bRect, "brect")
+    // console.log(e)
+    // console.log(bRect, "brect")
+    let xCord = e.clientX - bRect.x;
+    console.log(xCord, "xcord")
+    return xCord
+}
+
+function redraw(focus) {
+    const ctx = createCanvas.node().getContext('2d')
+
+    let x = 0;
+
+    for (let j = 0; j < imgNum; j++) {
+        let imgTest = new Image()
+
+        
+
+        if (j === focus) {
+            imgTest.onload = () => {
+                ctx.drawImage(imgTest,
+                    300 + j * 10, 100, (width * 0.3) - 3, height,
+                    x, 0, (width * 0.3) - 4, height);
+                x += (width * 0.3);
+                console.log(j, "j")
+                console.log(x, "x")
+                console.log((width * 0.3), "img width")
+            }
+            imgTest.src = "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg"
+        } else if (j === focus - 1 || j === focus + 1) {
+            imgTest.onload = () => {
+                ctx.drawImage(imgTest,
+                    300 + j * 10, 100, (width * 0.1) - 3, height,
+                    x, 0, (width * 0.1) - 4, height);
+                x += (width * 0.1);
+                console.log(j, "j")
+                console.log(x, "x")
+                console.log((width * 0.1), "img width")
+            }
+            imgTest.src = "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg"
+        } else if (j === focus - 2 || j === focus + 2) {
+            imgTest.onload = () => {
+                ctx.drawImage(imgTest,
+                    300 + j * 10, 100, (width * 0.07) - 3, height,
+                    x, 0, (width * 0.07) - 4, height)
+                x += (width * 0.07);
+                console.log(j, "j")
+                console.log(x, "x")
+                console.log((width * 0.07), "img width")
+            }
+            imgTest.src = "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg"
+        } else {
+            imgTest.onload = () => {
+                ctx.drawImage(imgTest,
+                    300 + j * 10, 100, (width * 0.0189) - 3, height,
+                    x, 0, (width * 0.0189) - 4, height);
+                x += (width * 0.0189);
+                console.log(j, "j")
+                console.log(x, "x")
+                console.log((width * 0.0189), "img width")
+            }
+            imgTest.src = "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg"
+        }
+    }
 }
 
 display.addEventListener("click", (e) => {
-    console.log(e.target, "target");
-    mousePos(createCanvas.node(), e)
+    // console.log(e.target, "target");
+    let x = mousePos(createCanvas.node(), e)
+    let zone = width / imgNum
+    let focus;
+    for (let i = 0; i < imgNum; i++) {
+        if (x > (i * zone) && i < ((i + 1) * zone)) {
+            focus = i;
+        }
+    }
+    console.log(focus)
+
+    redraw(focus)
+
 })
 
-//  
-
+display.addEventListener("mouseout", (e) => {
+    render()
+})
 
 // svg
 //     .selectAll("img")
