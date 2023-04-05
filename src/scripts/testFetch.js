@@ -19,16 +19,25 @@ export const harvard = async (e) => {
             if (dateCheck === 0) {
                 dateCheck = 1
             }
+
             let sourceInfo;
             if (data.records[i].copyright) {
                 sourceInfo = `Harvard Art Museums API/ ${data.records[i].copyright}`
             } else {
                 sourceInfo = "Harvard Art Museums API"
             }
+            let desc;
+            if (data.records[i].description) {
+                desc = data.records[i].description;
+            } else {
+                desc = 1;
+            }
+
             output.push({ 
                 url: data.records[i].baseimageurl,
                 date: dateCheck,
-                source: sourceInfo
+                source: sourceInfo,
+                description: desc
             })
             // data.records[i].datebegin
         }
@@ -68,10 +77,18 @@ export const cleveland = async (e) => {
             } else {
                 sourceInfo = "The Cleveland Museum of Art API"
             }
+
+            let desc;
+            if (data.data[i].tombstone) {
+                desc = data.data[i].tombstone;
+            } else {
+                desc = 1;
+            }
             output.push({ 
                 url: data.data[i].images.web.url, 
                 date: dateCheck,
-                source: sourceInfo
+                source: sourceInfo,
+                description: desc
             })
         }
     }
@@ -102,11 +119,18 @@ export const chicago2 = async (url) => {
     } else {
         sourceInfo = "Art Institute of Chicago API"
     }
+    let desc;
+    if (data.data.title) {
+        desc = data.data.title
+    } else {
+        desc = 1;
+    }
     // console.log(linkStr, "link")
     return {
             url: linkStr, 
             date: dateInfo,
-            source: sourceInfo
+            source: sourceInfo,
+            description: desc
         }
 }
 

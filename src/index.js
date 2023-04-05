@@ -46,6 +46,8 @@ addEventListener("resize", (e) => {
 
 const render = () => {
     const ctx = createCanvas.node().getContext('2d')
+    let lowerText = document.getElementById("below-display-text")
+    lowerText.innerHTML = "Once you move your mouse away from the photo array, <br> it will reset and the description will disappear."
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
 
     for (let i = 0; i < imgNum; i++){
@@ -56,6 +58,7 @@ const render = () => {
                 i * (width / imgNum), 0, width / imgNum - 4, height)
         }
         imgTest.src = photos[i].url
+        
         // imgTest.src = "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg"
         // console.log(imgTest)
     }
@@ -71,9 +74,13 @@ function mousePos(canvas, e) {
     console.log(xCord, "xcord")
     return xCord
 }
+// let lowerText = document.getElementById("below-display-text")
+// console.log(lowerText)
 
 function redraw(focus) {
     const ctx = createCanvas.node().getContext('2d')
+    let lowerText = document.getElementById("below-display-text")
+    
     ctx.clearRect(0 ,0, ctx.canvas.width, ctx.canvas.height)
     let x = 0;
 
@@ -87,6 +94,7 @@ function redraw(focus) {
                     x, 0, (width * 0.3) - 4, height);
                 x += (width * 0.3);
             }
+            lowerText.innerHTML = photos[j].description + "<br><br>" + photos[j].source;
             imgTest.src = photos[j].url;
             // imgTest.src = "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg"
         } else if (j === focus - 1 || j === focus + 1) {
@@ -122,6 +130,8 @@ function redraw(focus) {
 
 let clicked = false
 
+
+
 display.addEventListener("click", (e) => {
     // console.log(e.target, "target");
     let x = mousePos(createCanvas.node(), e)
@@ -132,7 +142,7 @@ display.addEventListener("click", (e) => {
             focus = i;
         }
     }
-    console.log(focus)
+    // console.log(focus)
 
     redraw(focus)
     clicked = true;
@@ -141,7 +151,8 @@ display.addEventListener("click", (e) => {
 
 display.addEventListener("mouseout", (e) => {
     if (clicked){
-        render()
+        setTimeout(render, 500)
+        // render()
         clicked = false;
     }
 })
