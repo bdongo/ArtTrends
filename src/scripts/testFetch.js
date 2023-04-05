@@ -1,5 +1,5 @@
 
-const harvardUrl = "https://api.harvardartmuseums.org/object?size=10&apikey=12403398-3c09-42ff-af07-f434bfd000a1"
+const harvardUrl = "https://api.harvardartmuseums.org/object?size=10&apikey=12403398-3c09-42ff-af07-f434bfd000a1&hasimage=true&permissionlevel=0"
 
 // https://api.harvardartmuseums.org/object?apikey=YOUR_API_KEY&hasimage=true&permissionlevel=0
 

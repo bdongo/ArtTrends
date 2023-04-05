@@ -3,12 +3,16 @@ import Photo from './scripts/photo.js';
 import * as d3 from 'd3';
 import { async } from 'regenerator-runtime';
 
-const photoArr = [];
+const photos = {};
 // TEST.cleveland()
 
 // TEST.harvard() 
 
 // TEST.chicago() // slow ?..
+
+function createPhotos() {
+    
+}
 const display = document.querySelector('#img-container')
 
 const imgNum = 24;
@@ -56,6 +60,7 @@ addEventListener("resize", (e) => {
 
 const render = () => {
     const ctx = createCanvas.node().getContext('2d')
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
 
 
     for (let i = 0; i < imgNum; i++){
@@ -101,6 +106,7 @@ function mousePos(canvas, e) {
 
 function redraw(focus) {
     const ctx = createCanvas.node().getContext('2d')
+    ctx.clearRect(0 ,0, ctx.canvas.width, ctx.canvas.height)
 
     let x = 0;
 
@@ -115,9 +121,9 @@ function redraw(focus) {
                     300 + j * 10, 100, (width * 0.3) - 3, height,
                     x, 0, (width * 0.3) - 4, height);
                 x += (width * 0.3);
-                console.log(j, "j")
-                console.log(x, "x")
-                console.log((width * 0.3), "img width")
+                // console.log(j, "j")
+                // console.log(x, "x")
+                // console.log((width * 0.3), "img width")
             }
             imgTest.src = "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg"
         } else if (j === focus - 1 || j === focus + 1) {
@@ -126,9 +132,9 @@ function redraw(focus) {
                     300 + j * 10, 100, (width * 0.1) - 3, height,
                     x, 0, (width * 0.1) - 4, height);
                 x += (width * 0.1);
-                console.log(j, "j")
-                console.log(x, "x")
-                console.log((width * 0.1), "img width")
+                // console.log(j, "j")
+                // console.log(x, "x")
+                // console.log((width * 0.1), "img width")
             }
             imgTest.src = "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg"
         } else if (j === focus - 2 || j === focus + 2) {
@@ -137,9 +143,9 @@ function redraw(focus) {
                     300 + j * 10, 100, (width * 0.07) - 3, height,
                     x, 0, (width * 0.07) - 4, height)
                 x += (width * 0.07);
-                console.log(j, "j")
-                console.log(x, "x")
-                console.log((width * 0.07), "img width")
+                // console.log(j, "j")
+                // console.log(x, "x")
+                // console.log((width * 0.07), "img width")
             }
             imgTest.src = "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg"
         } else {
@@ -148,9 +154,9 @@ function redraw(focus) {
                     300 + j * 10, 100, (width * 0.0189) - 3, height,
                     x, 0, (width * 0.0189) - 4, height);
                 x += (width * 0.0189);
-                console.log(j, "j")
-                console.log(x, "x")
-                console.log((width * 0.0189), "img width")
+                // console.log(j, "j")
+                // console.log(x, "x")
+                // console.log((width * 0.0189), "img width")
             }
             imgTest.src = "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg"
         }
