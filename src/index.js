@@ -18,8 +18,6 @@ const height = 350;
 const photos = {};
 
 function createPhotos(input) {
-    // input.length posibibly needs to be changes to imgnum in the future
-    // input.length
     for (let i = 0; i < input.length; i++) {
         console.log(input[i], "input i")
         photos[i] = new Photo(input[i])
@@ -77,23 +75,6 @@ const render = () => {
 }
 
 render()
-
-// const svg = d3.select('div#img-container')
-//     .append('svg')
-//     .attr('width', width)
-//     .attr('height', height);
-
-// svg
-//     .on('mouseover', (e) => {
-//         console.log(e)
-//         e.target.classed("hidden", false);
-//     })
-//     .on('mouseout', (e) => {
-//         e.classed("hidden", true)
-//     });
-// const imageListener = document.querySelectorAll("image")
-// const imageListener = d3.selectAll("image")
-// console.log(imageListener, "images")
 
 function mousePos(canvas, e) {
     let bRect = canvas.getBoundingClientRect();
@@ -179,38 +160,5 @@ display.addEventListener("click", (e) => {
 display.addEventListener("mouseout", (e) => {
     render()
 })
-
-// svg
-//     .selectAll("img")
-//     .data(d3.range(imgNum))
-//     .join('img')
-//     .attr('href', "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg")
-//     .attr('x', d => d * (width / imgNum))
-//     .attr('width', width / imgNum - 4)
-//     // .attr("class", "hidden")
-//     .attr('height', height);
-
-// const mask = svg.append('mask')
-//     .attr("id", "clipping-mask");
-
-// mask.append('rect')
-//     .attr("height", height)
-//     .attr("width", 30)
-//     .attr("x", "25%")
-//     .attr("fill", "white");
-
-// const image = svg.append('image') 
-//     .attr('href', "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg")
-//     .attr('height', height)
-//     .attr('mask', "url(#clipping-mask");
-
-// const image2 = svg.append('image')
-//     .attr('href', "https://openaccess-cdn.clevelandart.org/1928.8/1928.8_web.jpg")
-//     .attr('height', height)
-//     .attr('mask', "url(#clipping-mask");
-
-
-
-
 
 
