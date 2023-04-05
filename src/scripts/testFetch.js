@@ -1,28 +1,30 @@
 
-const harvardUrl = "https://api.harvardartmuseums.org/object?size=10&apikey=12403398-3c09-42ff-af07-f434bfd000a1&hasimage=true&permissionlevel=0"
+const harvardUrl = "https://api.harvardartmuseums.org/object?q=dress&size=20&apikey=12403398-3c09-42ff-af07-f434bfd000a1&hasimage=true&permissionlevel=0"
 
 // https://api.harvardartmuseums.org/object?apikey=YOUR_API_KEY&hasimage=true&permissionlevel=0
 
 export const harvard = async (e) => {
+    let output = [];
 
     let res = await fetch(harvardUrl, {
         headers: { "Accept": "application/json" }
     })
 
-    // console.log(res, "response")
     let data = await res.json()
-    // console.log(data, "data")
-    // console.log(data.records[0].primaryimageurl)
-    // console.log(data.response[0])
+
     for (let i = 0; i < data.records.length; i++) {
 
         if (data.records[i].primaryimageurl) {
-            let newImg = document.createElement("img")
-            newImg.src = data.records[i].primaryimageurl
-            document.querySelector("#img-container").appendChild(newImg)
+            let dateCheck = data.records[i].datebegin
+            if (dateCheck === 0) {
+                dateCheck = 1
+            }
+            output.push({ url: data.records[i].primaryimageurl, date: dateCheck })
+            // data.records[i].datebegin
         }
     }
 
+    return await output;
 }
 
 // things to group by: color date 

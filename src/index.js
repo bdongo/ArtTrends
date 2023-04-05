@@ -3,27 +3,47 @@ import Photo from './scripts/photo.js';
 import * as d3 from 'd3';
 import { async } from 'regenerator-runtime';
 
-const photos = {};
-// TEST.cleveland()
-
-// TEST.harvard() 
-
-// TEST.chicago() // slow ?..
-
-function createPhotos() {
-    
-}
-const display = document.querySelector('#img-container')
-
 const imgNum = 24;
 
 let width = window.innerWidth * 0.67;
 
-console.log(window.innerWidth);
-
-// console.log(width)
-// console.log(display, "get attribute")
 const height = 350;
+// TEST.cleveland()
+// console.log(photosInfo)
+// console.log(TEST.harvard(), "harvard" )
+
+
+// TEST.chicago() // slow ?..
+
+const photos = {};
+
+function createPhotos(input) {
+    // input.length posibibly needs to be changes to imgnum in the future
+    // input.length
+    for (let i = 0; i < input.length; i++) {
+        console.log(input[i], "input i")
+        photos[i] = new Photo(input[i])
+    }
+}
+
+const photosInfo = [];
+
+(Promise.all([TEST.harvard()]).then((values) => {
+    console.log(values[0])
+    createPhotos(values[0])
+}));
+
+console.log(photos, "objARR");
+
+// console.log(createPhotoInfo(), "photo arr")
+
+
+// let photoTest = new Photo({ url: "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg", date: 2019})
+const display = document.querySelector('#img-container')
+
+// console.log(photoTest.url)
+
+
 
 const createCanvas = d3.select('div#img-container')
     .append('canvas')
@@ -31,37 +51,18 @@ const createCanvas = d3.select('div#img-container')
     .attr('height', 350)
     .attr('id', 'canvas');
 
-
-
-
 addEventListener("resize", (e) => {
     // console.log(window.innerWidth, "assigning innerwidth");
     width = window.innerWidth * 0.67;
     createCanvas
         .attr('width', width);
 
-    // svg
-    //     .attr('width', width);
-
-    // svg.selectAll('rect')
-    //     .attr('x', d => d * (width / imgNum))
-    //     .attr('width', width / imgNum - 4);
-
-    // createCanvas
-    //     .selectAll("img")
-    //     .attr('x', d => d * (width / imgNum))
-    //     .attr('width', width / imgNum - 4);
-
     render();
-
 })
-
-
 
 const render = () => {
     const ctx = createCanvas.node().getContext('2d')
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-
 
     for (let i = 0; i < imgNum; i++){
         let imgTest = new Image()
@@ -76,7 +77,6 @@ const render = () => {
 }
 
 render()
-
 
 // const svg = d3.select('div#img-container')
 //     .append('svg')
@@ -107,13 +107,10 @@ function mousePos(canvas, e) {
 function redraw(focus) {
     const ctx = createCanvas.node().getContext('2d')
     ctx.clearRect(0 ,0, ctx.canvas.width, ctx.canvas.height)
-
     let x = 0;
 
     for (let j = 0; j < imgNum; j++) {
         let imgTest = new Image()
-
-        
 
         if (j === focus) {
             imgTest.onload = () => {
