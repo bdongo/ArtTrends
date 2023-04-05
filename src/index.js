@@ -8,12 +8,6 @@ const imgNum = 24;
 let width = window.innerWidth * 0.67;
 
 const height = 350;
-// TEST.cleveland()
-// console.log(photosInfo)
-// console.log(TEST.harvard(), "harvard" )
-
-
-// TEST.chicago() // slow ?..
 
 const photos = {};
 
@@ -26,6 +20,7 @@ function createPhotos(input) {
 
 (Promise.all([TEST.harvard(), TEST.cleveland(), TEST.chicago()]).then((values) => {
     console.log(values.flat(), "values")
+    // shuffle will take place here
     createPhotos(values.flat())
     render()
 }));

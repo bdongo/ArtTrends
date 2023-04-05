@@ -1,6 +1,6 @@
 
-const harvardUrl = "https://api.harvardartmuseums.org/object?q=dress&size=20&apikey=12403398-3c09-42ff-af07-f434bfd000a1&hasimage=true&permissionlevel=0"
-
+// const harvardUrl = "https://api.harvardartmuseums.org/object?q=dress&size=20&apikey=12403398-3c09-42ff-af07-f434bfd000a1&hasimage=true&permissionlevel=0"
+const harvardUrl = "https://api.harvardartmuseums.org/image?q=dress&size=20&apikey=12403398-3c09-42ff-af07-f434bfd000a1&hasimage=true&permissionlevel=0"
 // https://api.harvardartmuseums.org/object?apikey=YOUR_API_KEY&hasimage=true&permissionlevel=0
 
 export const harvard = async (e) => {
@@ -14,12 +14,12 @@ export const harvard = async (e) => {
 
     for (let i = 0; i < data.records.length; i++) {
 
-        if (data.records[i].primaryimageurl) {
-            let dateCheck = data.records[i].datebegin
+        if (data.records[i].baseimageurl) {
+            let dateCheck = parseInt(data.records[i].date.split("-")[0])
             if (dateCheck === 0) {
                 dateCheck = 1
             }
-            output.push({ url: data.records[i].primaryimageurl, date: dateCheck })
+            output.push({ url: data.records[i].baseimageurl, date: dateCheck })
             // data.records[i].datebegin
         }
     }
@@ -31,7 +31,7 @@ export const harvard = async (e) => {
 //  data.records[0].colors[0].hue
 // https://github.com/harvardartmuseums/api-docs
 
-const clevelandURL = "https://openaccess-api.clevelandart.org/api/artworks/?has_image=1&limit=10"
+const clevelandURL = "https://openaccess-api.clevelandart.org/api/artworks/?q=dress&has_image=1&limit=10&created_after=1400"
 
 export const cleveland = async (e) => {
     let output = [];
@@ -40,10 +40,10 @@ export const cleveland = async (e) => {
         headers: { "Accept": "application/json" }
     })
 
-    console.log(res, "response")
+    // console.log(res, "response")
     let data = await res.json()
-    console.log(data, "data")
-    console.log(data.data[0].images.web.url)
+    // console.log(data, "data")
+    // console.log(data.data[0].images.web.url)
     // console.log(data.response[0])
     for (let i = 0; i < data.data.length; i++) {
 
@@ -61,7 +61,7 @@ export const cleveland = async (e) => {
 // no color attribute but had date in a aproxomate format
 
 
-const chicagoURL = "https://api.artic.edu/api/v1/artworks/search?q=cats/manifest.json"
+const chicagoURL = "https://api.artic.edu/api/v1/artworks/search?q=dress/manifest.json"
 
 const chicagoURL2 = "https://api.artic.edu/api/v1/artworks/656"
 
