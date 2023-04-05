@@ -19,29 +19,19 @@ const photos = {};
 
 function createPhotos(input) {
     for (let i = 0; i < input.length; i++) {
-        console.log(input[i], "input i")
+        // console.log(input[i], "input i")
         photos[i] = new Photo(input[i])
     }
 }
 
-const photosInfo = [];
-
-(Promise.all([TEST.harvard()]).then((values) => {
-    console.log(values[0])
-    createPhotos(values[0])
+(Promise.all([TEST.harvard(), TEST.cleveland(), TEST.chicago()]).then((values) => {
+    console.log(values.flat(), "values")
+    createPhotos(values.flat())
 }));
 
 console.log(photos, "objARR");
 
-// console.log(createPhotoInfo(), "photo arr")
-
-
-// let photoTest = new Photo({ url: "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg", date: 2019})
 const display = document.querySelector('#img-container')
-
-// console.log(photoTest.url)
-
-
 
 const createCanvas = d3.select('div#img-container')
     .append('canvas')

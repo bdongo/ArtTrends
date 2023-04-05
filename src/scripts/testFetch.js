@@ -24,7 +24,7 @@ export const harvard = async (e) => {
         }
     }
 
-    return await output;
+    return output;
 }
 
 // things to group by: color date 
@@ -34,6 +34,7 @@ export const harvard = async (e) => {
 const clevelandURL = "https://openaccess-api.clevelandart.org/api/artworks/?has_image=1&limit=10"
 
 export const cleveland = async (e) => {
+    let output = [];
 
     let res = await fetch(clevelandURL, {
         headers: { "Accept": "application/json" }
@@ -47,12 +48,15 @@ export const cleveland = async (e) => {
     for (let i = 0; i < data.data.length; i++) {
 
         if (data.data[i].images.web.url) {
-            let newImg = document.createElement("img")
-            newImg.src = data.data[i].images.web.url
-            document.querySelector("#img-container").appendChild(newImg)
+            let dateCheck = data.data[i].creation_date_earliest
+            if (dateCheck === 0) {
+                dateCheck = 1
+            }
+            output.push({ url: data.data[i].images.web.url, date: dateCheck })
         }
     }
 
+    return output;
 }
 // no color attribute but had date in a aproxomate format
 
@@ -70,14 +74,16 @@ export const chicago2 = async (url) => {
     // console.log(res, "chicago2 response")
     let data = await res.json()
     // console.log(data, "chicago2 data")
+    let dateInfo =  data.data.date_start
     let linkStr = `${data.config.iiif_url}/${data.data.image_id}/full/843,/0/default.jpg`
     // console.log(linkStr, "link")
-    return linkStr
+    return {url: linkStr, date: dateInfo}
 }
 
 // ^^to get each img link
 
 export const chicago = async (e) => {
+    let output = []
 
     let res = await fetch(chicagoURL, {
         headers: { "Accept": "application/json" }
@@ -90,14 +96,13 @@ export const chicago = async (e) => {
     // console.log(link)
     for (let i = 0; i < data.data.length; i++) {
 
-     
-            const link = await data.data[i].api_link
-            let newImg = document.createElement("img")
-            let imgURL = await chicago2(link)
-            newImg.src = imgURL
-        document.querySelector("#img-container").appendChild(newImg)
-        
+        const link = await data.data[i].api_link
+            
+        let infoObj = await chicago2(link)
+        output.push(infoObj);
     }
+
+    return output
 }
 
 // https://api.artic.edu/docs/#iiif-image-api
