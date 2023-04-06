@@ -3,55 +3,54 @@
 
 __Technologies, Libraries, APIs:__
 
-This project uses [D3 JS](https://d3js.org/), [Harvard Art Museums API](https://github.com/harvardartmuseums/api-docs), [The Cleveland Museum of Art API](https://openaccess-api.clevelandart.org/), [Art Institute of Chicago API](https://api.artic.edu/docs/#introduction) to fetch, manipulate and compile image data.
+This project uses [D3](https://d3js.org/), [Harvard Art Museums API](https://github.com/harvardartmuseums/api-docs), [The Cleveland Museum of Art API](https://openaccess-api.clevelandart.org/), [Art Institute of Chicago API](https://api.artic.edu/docs/#introduction) to fetch, manipulate and compile image data.
 
 
 The challenge was to study the fetch request formatting and returned API response of each API. Each fetch is tailored to return the same infromation from different keys of the API response. With the creation of a new Photo object class. These are made into new Photo objects to be stored client side in a cache to be called any time to render the display.
 
-```
+```javascript
 function Photo(input){
-        this.date = input.date 
-        this.url = input.url
-        this.source = input.source
-        this.description = input.description
+    this.date = input.date 
+    this.url = input.url
+    this.source = input.source
+    this.description = input.description
 }
 ```
 Example of the data scraping from one fetch response.
 
-```
+```javascript
  if (data.records[i].baseimageurl) {
-            let dateCheck = parseInt(data.records[i].date.split("-")[0])
-            if (dateCheck === 0) {
-                dateCheck = 1
-            }
+    let dateCheck = parseInt(data.records[i].date.split("-")[0])
+    if (dateCheck === 0) {
+        dateCheck = 1
+    }
 
-            let sourceInfo;
-            if (data.records[i].copyright) {
-                sourceInfo = `Harvard Art Museums API/ ${data.records[i].copyright}`
-            } else {
-                sourceInfo = "Harvard Art Museums API"
-            }
-            let desc;
-            if (data.records[i].description) {
-                desc = data.records[i].description;
-            } else {
-                desc = 1;
-            }
+    let sourceInfo;
+    if (data.records[i].copyright) {
+        sourceInfo = `Harvard Art Museums API/ ${data.records[i].copyright}`
+    } else {
+        sourceInfo = "Harvard Art Museums API"
+    }
+    let desc;
+    if (data.records[i].description) {
+        desc = data.records[i].description;
+    } else {
+        desc = 1;
+    }
 
-            output.push({ 
-                url: data.records[i].baseimageurl,
-                date: dateCheck,
-                source: sourceInfo,
-                description: desc
-            })
-        }
+    output.push({ 
+        url: data.records[i].baseimageurl,
+        date: dateCheck,
+        source: sourceInfo,
+        description: desc
+    })
+}
 ```
 
 This simple line allows me to wait and unpack all promise reponses given by the fetches.
 
-```
+```javascript
 (Promise.all([TEST.cleveland(), TEST.chicago(), TEST.harvard()]).then((values) => {
-    // shuffle will take place here
     createPhotos(values.flat())
     render()
 }));
@@ -59,14 +58,14 @@ This simple line allows me to wait and unpack all promise reponses given by the 
 
 To keep my website display layout dynamic sized, all display elements are sized to the view size and use it as a reference in creating new elements. There is an event listener for resize to render the page once the window has been changed.
 
-```
+```javascript
 addEventListener("resize", (e) => {
     width = window.innerWidth * 0.67;
     createCanvas
         .attr('width', width);
 
     render();
-})
+});
 ```
 
 
