@@ -1,7 +1,7 @@
 
-// const harvardUrl = "https://api.harvardartmuseums.org/object?q=dress&size=20&apikey=12403398-3c09-42ff-af07-f434bfd000a1&hasimage=true&permissionlevel=0"
+
 const harvardUrl = "https://api.harvardartmuseums.org/image?q=dress&size=20&apikey=12403398-3c09-42ff-af07-f434bfd000a1&hasimage=true&permissionlevel=0"
-// https://api.harvardartmuseums.org/object?apikey=YOUR_API_KEY&hasimage=true&permissionlevel=0
+
 
 export const harvard = async (e) => {
     let output = [];
@@ -39,16 +39,11 @@ export const harvard = async (e) => {
                 source: sourceInfo,
                 description: desc
             })
-            // data.records[i].datebegin
         }
     }
 
     return output;
 }
-
-// things to group by: color date 
-//  data.records[0].colors[0].hue
-// https://github.com/harvardartmuseums/api-docs
 
 const clevelandURL = "https://openaccess-api.clevelandart.org/api/artworks/?q=dress&has_image=1&limit=10&created_after=1400"
 
@@ -59,11 +54,8 @@ export const cleveland = async (e) => {
         headers: { "Accept": "application/json" }
     })
 
-    // console.log(res, "response")
     let data = await res.json()
-    // console.log(data, "data")
-    // console.log(data.data[0].images.web.url)
-    // console.log(data.response[0])
+
     for (let i = 0; i < data.data.length; i++) {
 
         if (data.data[i].images.web.url) {
@@ -95,12 +87,8 @@ export const cleveland = async (e) => {
 
     return output;
 }
-// no color attribute but had date in a aproxomate format
-
 
 const chicagoURL = "https://api.artic.edu/api/v1/artworks/search?q=dress/manifest.json"
-
-const chicagoURL2 = "https://api.artic.edu/api/v1/artworks/656"
 
 export const chicago2 = async (url) => {
 
@@ -108,9 +96,7 @@ export const chicago2 = async (url) => {
         headers: { "Accept": "application/json" }
     })
 
-    // console.log(res, "chicago2 response")
     let data = await res.json()
-    // console.log(data, "chicago2 data")
     let dateInfo =  data.data.date_start
     let linkStr = `${data.config.iiif_url}/${data.data.image_id}/full/843,/0/default.jpg`
     let sourceInfo;
@@ -125,7 +111,6 @@ export const chicago2 = async (url) => {
     } else {
         desc = 1;
     }
-    // console.log(linkStr, "link")
     return {
             url: linkStr, 
             date: dateInfo,
@@ -134,8 +119,6 @@ export const chicago2 = async (url) => {
         }
 }
 
-// ^^to get each img link
-
 export const chicago = async (e) => {
     let output = []
 
@@ -143,11 +126,8 @@ export const chicago = async (e) => {
         headers: { "Accept": "application/json" }
     })
 
-    // console.log(res, "response")
     let data = await res.json()
-    // console.log(data, "data")
-  
-    // console.log(link)
+
     for (let i = 0; i < data.data.length; i++) {
 
         const link = await data.data[i].api_link
@@ -158,7 +138,3 @@ export const chicago = async (e) => {
 
     return output
 }
-
-// https://api.artic.edu/docs/#iiif-image-api
-
-
