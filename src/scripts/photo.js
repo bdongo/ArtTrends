@@ -5,4 +5,5 @@ function Photo(input){
         this.description = input.description
 }
 
+
 export default Photo
