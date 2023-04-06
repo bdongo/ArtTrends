@@ -233,10 +233,6 @@ body {
   height: auto;
 }
 
-/* div {
-    background-color: black;
-    height: 20px;
-} */
 #display-element {
   position: fixed;
   top: 25vh;

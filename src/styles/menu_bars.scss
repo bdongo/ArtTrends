@@ -1,6 +1,5 @@
 body {
     background-color: rgb(67, 66, 66);
-    // background-color: black;
     font-family: 'Suranna';
     font-style: normal;
     color: rgb(208, 208, 208);
@@ -11,15 +10,11 @@ body {
     width: auto;
     height: 150px;
     background-color: rgb(43, 40, 40);
-    // border-bottom: 1px rgb(208, 208, 208) solid;
-    // background-image: linear-gradient(to right, rgb(43, 40, 40), 70%, rgb(67, 66, 66));
-  
 }
 
 #corner{
     height: inherit;
     width: 80px;
-    // background-color: rgb(43, 40, 40);
 }
 
 #menu-border {
@@ -29,8 +24,7 @@ body {
     border-bottom-width: 3px;
     border-image: linear-gradient(to right, rgb(77, 76, 76), 80%, rgb(67, 66, 66)) 1;
     display: flex;
-    align-items: center;
-    // justify-content: space-between;      
+    align-items: center;  
 }
 
 #link-list {
@@ -61,7 +55,6 @@ body {
 #left-bar {
     height: 60vh;
     width: 80px;
-    // border-image: linear-gradient(rgb(208, 208, 208), 80%, #434242) 1 100%; old lighter border
     border-image: linear-gradient(rgb(77, 76, 76), 80%, #434242) 1 100%;
     border-right-width: 3px;
     border-right-style: solid;
@@ -77,7 +70,6 @@ body {
     height: 40vh;
     -webkit-mask-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) );
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
-    // -webkit-mask-image: linear-gradient(rgba(00, 00, 00), 70%, rgba(00, 00, 01));
     z-index: 50;
 }
 
@@ -91,15 +83,8 @@ body {
     mask-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
 
-
 #icons > a > img {
     opacity: 75%;
     width: 80px;
     height: auto;
 }
-
-
-/* div {
-    background-color: black;
-    height: 20px;
-} */
