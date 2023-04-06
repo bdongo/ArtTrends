@@ -128,9 +128,16 @@ function redraw(focus) {
     }
 }
 
+function createIcon(idx) {
+    
+    let sideBar = d3.select("div#icons")
+            .append("a")
+            .attr("href", photos[idx].url)
+            .append("img")
+            .attr("src", photos[idx].url)
+}
+
 let clicked = false
-
-
 
 display.addEventListener("click", (e) => {
     // console.log(e.target, "target");
@@ -143,7 +150,7 @@ display.addEventListener("click", (e) => {
         }
     }
     // console.log(focus)
-
+    createIcon(focus)
     redraw(focus)
     clicked = true;
 

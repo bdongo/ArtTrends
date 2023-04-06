@@ -31,28 +31,6 @@
     // border-image: linear-gradient(to right, rgb(43, 40, 40), 80%, rgb(67, 66, 66)) 1;
 }
 
-img {
-    height: inherit;
-    width: 60px;
-}
-
-svg {
-    position: absolute;
-    top: 89px;
-    // 89px
-    left: 1px;
-    // background-color: rgb(208, 208, 208);
-}
-
-
-rect {
-    fill: rgb(208, 208, 208);
-}
-
-rect:hover {
-    width: 100px;
-}
-
 .hidden {
     display: none;
 }
