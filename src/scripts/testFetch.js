@@ -1,7 +1,4 @@
-
-
 const harvardUrl = "https://api.harvardartmuseums.org/image?q=dress&size=20&apikey=12403398-3c09-42ff-af07-f434bfd000a1&hasimage=true&permissionlevel=0"
-
 
 export const harvard = async (e) => {
     let output = [];
