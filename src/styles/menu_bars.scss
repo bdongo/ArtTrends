@@ -43,6 +43,7 @@ body {
 
 #link-list > li {
     padding-top: 5px;
+    padding-right: 6px;
     padding-left: 6px;
 }
 
@@ -73,12 +74,20 @@ body {
 }
 
 #icons {
-    flex-direction: column;
+    flex-direction: column-reverse;
     display: flex;
+    justify-content: flex-end;
     width: inherit;
     height: 60vh;
     -webkit-mask-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     mask-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+#link-list > li > a > img {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 20px;
+    opacity: 70%;
 }
 
 #icons > a > img {

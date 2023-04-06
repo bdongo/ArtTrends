@@ -18,7 +18,7 @@ function createPhotos(input) {
     }
 }
 
-(Promise.all([TEST.harvard(), TEST.cleveland(), TEST.chicago()]).then((values) => {
+(Promise.all([TEST.cleveland(), TEST.chicago(), TEST.harvard()]).then((values) => {
     console.log(values.flat(), "values")
     // shuffle will take place here
     createPhotos(values.flat())
@@ -128,13 +128,27 @@ function redraw(focus) {
     }
 }
 
+const icons = [];
+
 function createIcon(idx) {
-    
+    // if (icons.length === 6) {
+    //     icons.pop()
+    // }
+    let bar = document.getElementById('icons')
+    let aArr = bar.getElementsByTagName("a")
+    console.log(aArr, "length?")
+    if (aArr.length >= 6) {
+        bar.removeChild(bar.firstChild);
+        console.log(bar.getElementsByTagName("a"), "length?")
+    }
+
     let sideBar = d3.select("div#icons")
-            .append("a")
-            .attr("href", photos[idx].url)
-            .append("img")
-            .attr("src", photos[idx].url)
+        .append("a")
+        .attr("href", photos[idx].url)
+        .attr("target", "_blank")
+        .append("img")
+        .attr("src", photos[idx].url);
+
 }
 
 let clicked = false
