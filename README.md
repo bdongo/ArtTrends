@@ -1,69 +1,75 @@
-# ArtTrends
-Functionality of my project, Art and Trends, is to visualize image data. My main functionality is to have the user interact with an array of pictures that expand where the user is hovering.
-
-
-
-
-__In Fashion and Trends, users will be able to:__
-
--Scrolling and and enlarging while mouse is hovering over a picture
-
--Abstraction of image set to move past on top bar
-
--A menu to access each page
-
-In addition, this project will include:
-
--Production README
-
-
-
-__Wireframes:__
-
-![wireframe image](assets/wireframe.png)
-
-
+# Art Fashion Trends
+[Art and Trends](https://bdongo.github.io/fashiontrends/), is a image data visualization project. Taking on the challenge of dealing with multiple data API sources. The main functionality of the site is to have a light front-end site that abstracts the images of the certain topic and can display a large array of pictures where the user can expand and inspect by clicking. 
 
 __Technologies, Libraries, APIs:__
 
-~~Tumblr API~~
-
-D3 JS
-
-HARVARD Museum API
-
-~~MET Museum API~~
-
-CLEVELAND Museum API
-
-BROOKLYN Museum API
-
-CHICAGO Museum API
+This project uses [D3 JS](https://d3js.org/), [Harvard Art Museums API](https://github.com/harvardartmuseums/api-docs), [The Cleveland Museum of Art API](https://openaccess-api.clevelandart.org/), [Art Institute of Chicago API](https://api.artic.edu/docs/#introduction) to fetch, manipulate and compile image data.
 
 
+The challenge was to study the fetch request formatting and returned API response of each API. Each fetch is tailored to return the same infromation from different keys of the API response. With the creation of a new Photo object class. These are made into new Photo objects to be stored client side in a cache to be called any time to render the display.
+
+```
+function Photo(input){
+        this.date = input.date 
+        this.url = input.url
+        this.source = input.source
+        this.description = input.description
+}
+```
+Example of the data scraping from one fetch response.
+
+```
+ if (data.records[i].baseimageurl) {
+            let dateCheck = parseInt(data.records[i].date.split("-")[0])
+            if (dateCheck === 0) {
+                dateCheck = 1
+            }
+
+            let sourceInfo;
+            if (data.records[i].copyright) {
+                sourceInfo = `Harvard Art Museums API/ ${data.records[i].copyright}`
+            } else {
+                sourceInfo = "Harvard Art Museums API"
+            }
+            let desc;
+            if (data.records[i].description) {
+                desc = data.records[i].description;
+            } else {
+                desc = 1;
+            }
+
+            output.push({ 
+                url: data.records[i].baseimageurl,
+                date: dateCheck,
+                source: sourceInfo,
+                description: desc
+            })
+        }
+```
+
+This simple line allows me to wait and unpack all promise reponses given by the fetches.
+
+```
+(Promise.all([TEST.cleveland(), TEST.chicago(), TEST.harvard()]).then((values) => {
+    // shuffle will take place here
+    createPhotos(values.flat())
+    render()
+}));
+```
+
+To keep my website display layout dynamic sized, all display elements are sized to the view size and use it as a reference in creating new elements. There is an event listener for resize to render the page once the window has been changed.
+
+```
+addEventListener("resize", (e) => {
+    width = window.innerWidth * 0.67;
+    createCanvas
+        .attr('width', width);
+
+    render();
+})
+```
 
 
-__Implementation Timeline:__
+__Initial Project Design:__
 
-__Friday Afternoon & Weekend:__
-Friday and the weekend will be to nail down the visual layout of my project. I would like my html, css and static elements as finalized as possible before I move onto problem solving the dynamic elements. I will also create and Art Object class to make them uniform in attributes, if I am pulling them from different APIs.
-The goal over the weekend is to familiarize myself with new tools, mainly D3 to try and a get a start of the mockup of the main hovering scroll feature of the project.
- 
-
-***Monday:***
-Continue working on my main feature as well as figure out to to make a moving top nav bar. 
-
-***Tuesday:***
-Continue and try to finalize main visualizer. Start the abstracted static images to move through top bar.
-
-***Wednesday:***
-Finalization of everything and if everything is smooth, starting on bonus quick sort like feature.
-
-***Thursday Morning:***
-Polishing everything and full testing for presentations.
-
-
-__BONUS:__
-
--Quick sort like functionality when a picture is clicked other pictures are moved left or right according to date.
-
+![wireframe image](assets/wireframe.png)
