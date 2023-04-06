@@ -115,10 +115,8 @@ function createIcon(idx) {
 
     let bar = document.getElementById('icons')
     let aArr = bar.getElementsByTagName("a")
-    console.log(aArr, "length?")
-    if (aArr.length >= 5) {
+    if (aArr.length >= 6) {
         bar.removeChild(bar.firstChild);
-        console.log(bar.getElementsByTagName("a"), "length?")
     }
 
     let sideBar = d3.select("div#icons")
@@ -131,6 +129,23 @@ function createIcon(idx) {
 }
 
 let clicked = false
+
+
+// work on next time with animations
+// display.addEventListener("mousemove", (e) => {
+//     let x = mousePos(createCanvas.node(), e)
+//     let zone = width / imgNum
+//     let focus;
+//     for (let i = 0; i < imgNum; i++) {
+//         if (x > (i * zone) && i < ((i + 1) * zone)) {
+//             focus = i;
+//         }
+//     }
+//     // createIcon(focus)
+//     redraw(focus)
+//     clicked = true;
+
+// })
 
 display.addEventListener("click", (e) => {
     let x = mousePos(createCanvas.node(), e)

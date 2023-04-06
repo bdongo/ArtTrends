@@ -18,7 +18,7 @@ body {
 
 #corner{
     height: inherit;
-    width: 75px;
+    width: 80px;
     // background-color: rgb(43, 40, 40);
 }
 
@@ -30,29 +30,37 @@ body {
     border-image: linear-gradient(to right, rgb(77, 76, 76), 80%, rgb(67, 66, 66)) 1;
     display: flex;
     align-items: center;
-    // justify-content: space-between;
-        
+    // justify-content: space-between;      
 }
 
 #link-list {
     position: absolute;
-    left: 54vw;
-    width: 45vw;
+    top: 44px;
+    left: 80vw;
+    width: 19vw;
     display: flex;
+    flex-direction: column;
+    text-align: end;
+
+
+    li {
+        padding-top: 7px;
+        padding-right: 6px;
+        padding-left: 6px;
+        font-size: 14px;
+    }
 }
 
-#link-list > li {
-    padding-top: 5px;
-    padding-right: 6px;
-    padding-left: 6px;
+#link-list>li>a>img {
+    padding-top: 2px;
+    padding-right: 5px;
+    width: 20px;
+    opacity: 70%;
 }
-
-
-
 
 #left-bar {
     height: 60vh;
-    width: 75px;
+    width: 80px;
     // border-image: linear-gradient(rgb(208, 208, 208), 80%, #434242) 1 100%; old lighter border
     border-image: linear-gradient(rgb(77, 76, 76), 80%, #434242) 1 100%;
     border-right-width: 3px;
@@ -65,7 +73,7 @@ body {
 #mask {
     position: fixed;
     top: 65vh;
-    width: 75px;
+    width: 80px;
     height: 40vh;
     -webkit-mask-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) );
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
@@ -83,16 +91,10 @@ body {
     mask-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
 
-#link-list > li > a > img {
-    padding-left: 5px;
-    padding-right: 5px;
-    width: 20px;
-    opacity: 70%;
-}
 
 #icons > a > img {
     opacity: 75%;
-    width: 75px;
+    width: 80px;
     height: auto;
 }
 
