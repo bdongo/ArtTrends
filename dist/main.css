@@ -196,6 +196,7 @@ body {
 }
 
 #query-input {
+  padding-left: 10px;
   border: 3px solid rgb(67, 66, 66);
   border-radius: 10px 0 0 10px;
   width: 220px;
@@ -230,6 +231,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   border: 2px solid rgb(43, 40, 40);
+  border-radius: 5px;
   background-color: rgba(43, 40, 40, 0.704);
   padding: 5px;
 }
@@ -259,8 +261,8 @@ body {
   width: calc(100% / var(--img-card-count));
   flex-grow: 1;
   flex-shrink: 1;
-  transition: height 0.7s ease-in-out, border-radius 0.5s ease-in-out, flex-grow 1s ease-in-out, flex-shrink 1s ease-in-out, width 0.7s ease-in-out;
-  transition-delay: 0.7s, 0.7s, 0.7s, 0.7s, 0.7s;
+  transition: height 0.5s ease-in-out, border-radius 0.5s ease-in-out, flex-grow 1s ease-in-out, flex-shrink 1s ease-in-out, width 0.5s ease-in-out;
+  transition-delay: 0.2s, 0.2s, 0.2s, 0.2s, 0.2s;
 }
 
 .img-card:hover {

@@ -9,13 +9,13 @@ let query = "";
 
 const pinnedPhotos = {}
 
-const photos = {};
-const getImgNum = () => (Object.keys(photos).length);
+const getImgNum = (photos) => (Object.keys(photos).length);
 
 (Promise.all([TEST.cleveland("dress"), TEST.chicago("dress"), TEST.harvard("dress")]).then((values) => {
     // shuffle will take place here
-    createPhotos(values.flat())
-    render()
+    console.log("in here")
+    const photos =createPhotos(values.flat())
+    render(photos)
 }));
 
 const display = document.querySelector('#img-container')
@@ -33,30 +33,34 @@ const observer = new MutationObserver((mutationsList) => {
 
 observer.observe(document, { subtree: true, childList: true });
 
-const render = () => {
-    let lowerText = document.getElementById("below-display-text")
-    lowerText.innerHTML = "Once you move your mouse away from the photo array, <br> it will reset and the description will disappear."
-    const imgNum = getImgNum()
+const render = (obj) => {
+    // let lowerText = document.getElementById("below-display-text")
+    // lowerText.innerHTML = "Once you move your mouse away from the photo array, <br> it will reset and the description will disappear."
+    const imgNum = getImgNum(obj)
+
     for (let i = 0; i < imgNum; i++) {
         const newElement = document.createElement('div');
+        newElement.dataset.id = i;
         newElement.className = "img-card"
         const img = document.createElement('img');
-        img.src = photos[i].url;
+        img.src = obj[i].url;
         newElement.appendChild(img)
         display.appendChild(newElement)
     }
 }
 
+
 const searchBar = document.querySelector('#query-input');
 const title = document.querySelector('#query-title');
 searchBar.placeholder = "type to search the 3 databases"
+const aboveText = document.getElementById("above-display-text")
+const lowerText = document.getElementById("below-display-text")
 
 
 searchBar.addEventListener("input", (e) => {
     query = e.target.value;
 });
 
-console.log(query, "query");
 
 const form = document.querySelector('form');
 form.addEventListener("submit", (e) => {
@@ -64,22 +68,90 @@ form.addEventListener("submit", (e) => {
     
     if (query !== '') {
         title.innerHTML = "loading..."
-    
-        Promise.all([TEST.cleveland(query), TEST.chicago(query), TEST.harvard(query)]).then((values) => {
-            title.innerHTML = query
-            searchBar.value = '';
-            createPhotos(values.flat())
-            render()
-        })
+
+        const childElements = display.childNodes;
+
+        // removeChildsWithDelay(childElements);
+        while (display.firstChild) {
+            display.removeChild(display.firstChild);
+        }
+
+        Promise.all([ TEST.cleveland(query), TEST.chicago(query), TEST.harvard(query)])
+            .then((values) => {
+                console.log(values, "values")
+               const photos = createPhotos(values.flat());
+               return photos
+            }).then((photos)=>{
+                title.innerHTML = query;
+                console.log(title, "title")
+                console.log(photos, "photos")
+                render(photos);
+            }).then(()=> {
+                lowerText.innerHTML = `Depictions of "${query}" in art from Museum Open APIs.`;
+                searchBar.value = '';
+            })
     } else {
         searchBar.placeholder = "please type a query first"
     }
 });
+// function removeChildsWithDelay(childElements) {
+//     const promises = [];
+
+//     for (let i = childElements.length - 1; i >= 0; i--) {
+//         const child = childElements[i];
+//         const promise = new Promise(resolve => setTimeout(resolve, 200)).then(() => {
+//             display.removeChild(child);
+//         });
+//         promises.push(promise);
+//     }
+
+//     return Promise.all(promises);
+// }
+function removeChildsWithDelay(display) {
+    return new Promise((resolve) => {
+        const intervalId = setInterval(() => {
+            if (!display.firstChild) {
+                clearInterval(intervalId);
+                resolve();
+                return;
+            }
+
+            display.removeChild(display.firstChild);
+        }, 200);
+    });
+}
+
+// form.addEventListener("submit", async (e) => {
+//     e.preventDefault();
+
+//     if (query !== '') {
+//         title.innerHTML = "loading..."
+
+//         const childElements = display.childNodes;
+//         const removalPromise = await removeChildsWithDelay(childElements);
+
+//         Promise.all([TEST.cleveland(query), TEST.chicago(query), TEST.harvard(query)])
+//             .then((values) => {
+//                 // removalPromise.then(() => {
+//                     title.innerHTML = query;
+//                     aboveText.innerHTML = `Depictions of "${query}" in art from Museum Open APIs.`;
+//                     createPhotos(values.flat());
+//                     render();
+//                     searchBar.value = '';
+//                 // });
+//             });
+//     } else {
+//         searchBar.placeholder = "please type a query first"
+//     }
+// });
+
 
 function createPhotos(input) {
+    const photos = {}
     for (let i = 0; i < input.length; i++) {
         photos[i] = new Photo(input[i])
     }
+    return photos
 }
 
 
