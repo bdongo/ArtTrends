@@ -5,7 +5,9 @@ import { async } from 'regenerator-runtime';
 
 
 
-let query = "dress";
+let query = "";
+
+const pinnedPhotos = {}
 
 const photos = {};
 const getImgNum = () => (Object.keys(photos).length);
@@ -60,15 +62,18 @@ const form = document.querySelector('form');
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     
-
-    title.innerHTML = "loading..."
-
-    Promise.all([TEST.cleveland(query), TEST.chicago(query), TEST.harvard(query)]).then((values) => {
-        title.innerHTML = query
-        searchBar.value = '';
-        createPhotos(values.flat())
-        render()
-    })
+    if (query !== '') {
+        title.innerHTML = "loading..."
+    
+        Promise.all([TEST.cleveland(query), TEST.chicago(query), TEST.harvard(query)]).then((values) => {
+            title.innerHTML = query
+            searchBar.value = '';
+            createPhotos(values.flat())
+            render()
+        })
+    } else {
+        searchBar.placeholder = "please type a query first"
+    }
 });
 
 function createPhotos(input) {
