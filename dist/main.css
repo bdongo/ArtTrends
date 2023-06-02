@@ -217,7 +217,7 @@ body {
 }
 
 #page {
-  height: 80vh;
+  height: 70vh;
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -311,12 +311,17 @@ body {
   top: 375px;
   left: 0;
   padding: 5px;
+  margin-top: 10px;
   width: 80vw;
   height: auto;
-  border: 2px solid rgb(43, 40, 40);
   border-top: none;
   background-color: rgb(43, 40, 40);
   border-radius: 0 0 5px 5px;
+}
+
+.img-card:hover > .img-info > p {
+  margin-left: 5px;
+  margin-bottom: 5px;
 }
 
 .img-card > img {
@@ -330,6 +335,7 @@ body {
 .img-info {
   width: 0px;
   height: 0px;
+  transition: height 0.3s ease-in-out;
 }
 
 .hidden {
@@ -358,6 +364,7 @@ h2 {
   padding-left: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
+  width: 80vw;
 }
 
 #query-title {
@@ -371,4 +378,5 @@ h2 {
   font-weight: bold;
   text-align: end;
   font-style: italic;
+  width: 80vw;
 }
