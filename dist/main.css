@@ -233,7 +233,7 @@ body {
 }
 
 #page {
-  height: 70vh;
+  height: 75vh;
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -377,6 +377,7 @@ h2 {
 }
 
 #above-display-text {
+  height: 50px;
   padding-left: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -389,10 +390,11 @@ h2 {
 }
 
 #below-display-text {
-  padding-top: 5px;
-  padding-bottom: 10px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   font-weight: bold;
-  text-align: end;
   font-style: italic;
   width: 80vw;
 }
