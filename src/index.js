@@ -65,9 +65,9 @@ const render = (obj) => {
 const searchBar = document.querySelector('#query-input');
 const title = document.querySelector('#query-title');
 searchBar.placeholder = "type to search and choose from the databases"
-const harvardRadio = document.getElementById('harvard-radio');
-const clevelandRadio = document.getElementById('cleveland-radio');
-const chicagoRadio = document.getElementById('chicago-radio');
+const harvardCheck = document.getElementById('harvard-check');
+const clevelandCheck = document.getElementById('cleveland-check');
+const chicagoCheck = document.getElementById('chicago-check');
 // 
 const aboveText = document.getElementById("above-display-text")
 const lowerText = document.getElementById("below-display-text")
@@ -85,14 +85,17 @@ form.addEventListener("submit", (e) => {
     if (query !== '') {
         title.innerHTML = "loading..."
 
-        const childElements = display.childNodes;
+        const fetchArr = []
 
-        // removeChildsWithDelay(childElements);
+        if (harvardCheck.checked) fetchArr.push(TEST.harvard(query));
+        if (clevelandCheck.checked) fetchArr.push(TEST.cleveland(query))
+        if (chicagoCheck.checked) fetchArr.push(TEST.chicago(query))
+
         while (display.firstChild) {
             display.removeChild(display.firstChild);
         }
 
-        Promise.all([ TEST.cleveland(query), TEST.chicago(query), TEST.harvard(query)])
+        Promise.all(fetchArr)
             .then((values) => {
                 console.log(values, "values")
                const photos = createPhotos(values.flat());
