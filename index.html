@@ -19,16 +19,26 @@
                 <h2>Art Fashion Trends</h2>
             </div>
         </div>
-        <form id="query-form">
-            <input type="text" name="" id="query-input">
-            <button type="submit" id="query-submit">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="rgb(67, 66, 66)" class="bi bi-search"
-                viewBox="0 0 16 16">
-                <path
-                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-            </svg>
-</button>
-        </form>
+        <div id="form-container">
+            <form id="query-form">
+                <input type="text" name="" id="query-input">
+                <button type="submit" id="query-submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="rgb(67, 66, 66)" class="bi bi-search"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+                </button>
+            </form>
+            <form id="selection-form">
+                <label for="harvard-check">Harvard</label>
+                <input type="checkbox" name="api" id="harvard-check" checked>
+                <label for="cleveland-check">Cleveland</label>
+                <input type="checkbox" name="api" id="cleveland-check" checked>
+                <label for="cleveland-check">Chicago</label>
+                <input type="checkbox" name="api" id="chicago-check" checked>
+            </form>
+        </div>
         <ul id="link-list">
             <li><a href="https://www.linkedin.com/in/brandon-l/" target="_blank"><img src="assets/In-White-40@2x.png"></a> <a
                     href="https://github.com/bdongo" target="_blank"><img src="assets/github-mark-white.png"></a></li>
@@ -40,7 +50,7 @@
     
     <div id="page">
         <div id="display-element">
-            <div id="above-display-text">
+            <div id="above-display-text">       
                 <h1 id="query-title">Dress</h1>
             </div>
     
