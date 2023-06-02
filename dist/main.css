@@ -148,14 +148,13 @@ table {
 body {
   font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue";
   font-style: normal;
-  color: rgb(208, 208, 208);
+  color: rgb(67, 66, 66);
 }
 
 #top-bar {
   display: flex;
   width: auto;
-  height: 150px;
-  background-color: rgba(43, 40, 40, 0.392);
+  height: 120px;
   border: 3px solid rgba(67, 66, 66, 0.436);
   display: flex;
   justify-content: space-between;
@@ -187,6 +186,14 @@ body {
   opacity: 70%;
 }
 
+#form-container {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 #query-form {
   width: 300px;
   height: 30px;
@@ -216,8 +223,17 @@ body {
   align-items: center;
 }
 
+#selection-form {
+  margin: 5px;
+  accent-color: rgb(67, 66, 66);
+}
+
+#selection-form > label {
+  color: rgb(67, 66, 66);
+}
+
 #page {
-  height: 70vh;
+  height: 75vh;
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -233,7 +249,6 @@ body {
   align-items: center;
   border: 2px solid rgb(43, 40, 40);
   border-radius: 5px;
-  background-color: rgba(43, 40, 40, 0.704);
   padding: 5px;
 }
 #display-element h2 {
@@ -309,13 +324,14 @@ body {
 .img-card:hover > .img-info {
   position: absolute;
   top: 375px;
-  left: 0;
+  right: 0;
   padding: 5px;
   margin-top: 10px;
-  width: 80vw;
+  width: 65vw;
   height: auto;
+  border: 2px solid rgb(43, 40, 40);
   border-top: none;
-  background-color: rgb(43, 40, 40);
+  background-color: white;
   border-radius: 0 0 5px 5px;
 }
 
@@ -361,6 +377,7 @@ h2 {
 }
 
 #above-display-text {
+  height: 50px;
   padding-left: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -373,10 +390,11 @@ h2 {
 }
 
 #below-display-text {
-  padding-top: 5px;
-  padding-bottom: 10px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   font-weight: bold;
-  text-align: end;
   font-style: italic;
   width: 80vw;
 }

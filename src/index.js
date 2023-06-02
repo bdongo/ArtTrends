@@ -61,10 +61,14 @@ const render = (obj) => {
     }
 }
 
-
+// form elements
 const searchBar = document.querySelector('#query-input');
 const title = document.querySelector('#query-title');
-searchBar.placeholder = "type to search the 3 databases"
+searchBar.placeholder = "type to search and choose from the databases"
+const harvardCheck = document.getElementById('harvard-check');
+const clevelandCheck = document.getElementById('cleveland-check');
+const chicagoCheck = document.getElementById('chicago-check');
+// 
 const aboveText = document.getElementById("above-display-text")
 const lowerText = document.getElementById("below-display-text")
 
@@ -81,14 +85,17 @@ form.addEventListener("submit", (e) => {
     if (query !== '') {
         title.innerHTML = "loading..."
 
-        const childElements = display.childNodes;
+        const fetchArr = []
 
-        // removeChildsWithDelay(childElements);
+        if (harvardCheck.checked) fetchArr.push(TEST.harvard(query));
+        if (clevelandCheck.checked) fetchArr.push(TEST.cleveland(query))
+        if (chicagoCheck.checked) fetchArr.push(TEST.chicago(query))
+
         while (display.firstChild) {
             display.removeChild(display.firstChild);
         }
 
-        Promise.all([ TEST.cleveland(query), TEST.chicago(query), TEST.harvard(query)])
+        Promise.all(fetchArr)
             .then((values) => {
                 console.log(values, "values")
                const photos = createPhotos(values.flat());
@@ -106,57 +113,6 @@ form.addEventListener("submit", (e) => {
         searchBar.placeholder = "please type a query first"
     }
 });
-// function removeChildsWithDelay(childElements) {
-//     const promises = [];
-
-//     for (let i = childElements.length - 1; i >= 0; i--) {
-//         const child = childElements[i];
-//         const promise = new Promise(resolve => setTimeout(resolve, 200)).then(() => {
-//             display.removeChild(child);
-//         });
-//         promises.push(promise);
-//     }
-
-//     return Promise.all(promises);
-// }
-function removeChildsWithDelay(display) {
-    return new Promise((resolve) => {
-        const intervalId = setInterval(() => {
-            if (!display.firstChild) {
-                clearInterval(intervalId);
-                resolve();
-                return;
-            }
-
-            display.removeChild(display.firstChild);
-        }, 200);
-    });
-}
-
-// form.addEventListener("submit", async (e) => {
-//     e.preventDefault();
-
-//     if (query !== '') {
-//         title.innerHTML = "loading..."
-
-//         const childElements = display.childNodes;
-//         const removalPromise = await removeChildsWithDelay(childElements);
-
-//         Promise.all([TEST.cleveland(query), TEST.chicago(query), TEST.harvard(query)])
-//             .then((values) => {
-//                 // removalPromise.then(() => {
-//                     title.innerHTML = query;
-//                     aboveText.innerHTML = `Depictions of "${query}" in art from Museum Open APIs.`;
-//                     createPhotos(values.flat());
-//                     render();
-//                     searchBar.value = '';
-//                 // });
-//             });
-//     } else {
-//         searchBar.placeholder = "please type a query first"
-//     }
-// });
-
 
 function createPhotos(input) {
     const photos = {}

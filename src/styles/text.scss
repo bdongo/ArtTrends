@@ -22,6 +22,7 @@ h3 {
 
 
 #above-display-text {
+    height: 50px;
     padding-left: 5px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -34,11 +35,11 @@ h3 {
 }
 
 #below-display-text{
-    padding-top: 5px;
-    // width: 67vw;
-    padding-bottom: 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     font-weight: bold;
-    text-align: end;
     font-style: italic;
     width: 80vw;
 }

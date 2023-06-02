@@ -1,5 +1,5 @@
 #page {
-    height: 70vh;
+    height: 75vh;
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -15,7 +15,7 @@
     align-items: center;
     border: 2px solid rgb(43, 40, 40);
     border-radius: 5px;
-    background-color: rgba(43, 40, 40, 0.704);
+    // background-color: rgba(43, 40, 40, 0.704);
     padding: 5px;
     h2 {
         padding-bottom: 6px;
@@ -98,14 +98,14 @@
 .img-card:hover > .img-info {
     position: absolute;
     top: 375px;
-    left: 0;
+    right: 0;
     padding: 5px;
     margin-top: 10px;
-    width: 80vw;
+    width: 65vw;
     height: auto;
-    // border: 2px solid rgb(43, 40, 40);
+    border: 2px solid rgb(43, 40, 40);
     border-top: none;
-    background-color: rgb(43, 40, 40);
+    background-color: white;
     border-radius: 0 0 5px 5px;
 }
 
