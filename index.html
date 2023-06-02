@@ -14,45 +14,41 @@
 </head>
 <body>
     <div id="top-bar">
-        <div id="corner"></div>
+        <div id="menu-border">
+            <div id="menu-title">
+                <h2>Art Fashion Trends</h2>
+            </div>
+        </div>
+        <form id="query-form">
+            <input type="text" name="" id="query-input">
+            <button type="submit" id="query-submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="rgb(67, 66, 66)" class="bi bi-search"
+                viewBox="0 0 16 16">
+                <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+            </svg>
+</button>
+        </form>
         <ul id="link-list">
-            <li><a href="https://www.linkedin.com/in/brandon-l/" target="_blank"><img src="assets/In-White-40@2x.png"></a> <a href="https://github.com/bdongo" target="_blank"><img src="assets/github-mark-white.png"></a></li>
+            <li><a href="https://www.linkedin.com/in/brandon-l/" target="_blank"><img src="assets/In-White-40@2x.png"></a> <a
+                    href="https://github.com/bdongo" target="_blank"><img src="assets/github-mark-white.png"></a></li>
             <li><a href="https://github.com/harvardartmuseums/api-docs" target="_blank">Harvard Art Museums API</a></li>
             <li><a href="https://openaccess-api.clevelandart.org/" target="_blank">The Cleveland Museum of Art API</a></li>
             <li><a href="https://api.artic.edu/docs/#introduction" target="_blank">Art Institute of Chicago API</a></li>
         </ul>
-        <div id="menu-border">
-            <div id="menu-title">
-                <h1>Art Fashion Trends</h1>
-            </div>
-        </div>
-    </div>
-
-    <div id="mask"></div>
-    <div id="left-bar">
-        <div id="icons">
-        </div>
     </div>
     
-
-    <div id="display-element">
-        <div id="above-display-text">
-            <h2>Dress</h2>
-            <div>
-                Depictions of dresses in art from Museum Open APIs.
-                <br>
-                Click to expand the image. The description and source will show up in the bottom right corner.
-                <br>
-                Clicked image history will appear in the bar to the left. Use them to open the whole image in a new tab.
+    <div id="page">
+        <div id="display-element">
+            <div id="above-display-text">
+                <h1 id="query-title">Dress</h1>
             </div>
-        </div>
-
-        <div id="img-container"></div>
-
-        <div id="below-display-text">
-            Once you move your mouse away from the photo array,
-            <br>
-            it will reset and the description will disappear.
+    
+            <div id="img-container"></div>
+    
+            <div id="below-display-text">
+                Depictions of "dress" in art from Museum Open APIs.
+            </div>
         </div>
     </div>
 

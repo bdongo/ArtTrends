@@ -3,170 +3,167 @@ import Photo from './scripts/photo.js';
 import * as d3 from 'd3';
 import { async } from 'regenerator-runtime';
 
-const imgNum = 24;
 
-let width = window.innerWidth * 0.67;
 
-const height = 350;
+let query = "";
 
-const photos = {};
+const pinnedPhotos = {}
 
-function createPhotos(input) {
-    for (let i = 0; i < input.length; i++) {
-        photos[i] = new Photo(input[i])
-    }
-}
+const getImgNum = (photos) => (Object.keys(photos).length);
 
-(Promise.all([TEST.cleveland(), TEST.chicago(), TEST.harvard()]).then((values) => {
+(Promise.all([TEST.cleveland("dress"), TEST.chicago("dress"), TEST.harvard("dress")]).then((values) => {
     // shuffle will take place here
-    createPhotos(values.flat())
-    render()
+    console.log("in here")
+    const photos =createPhotos(values.flat())
+    render(photos)
 }));
 
 const display = document.querySelector('#img-container')
 
-const createCanvas = d3.select('div#img-container')
-    .append('canvas')
-    .attr('width', width)
-    .attr('height', 350)
-    .attr('id', 'canvas');
 
-addEventListener("resize", (e) => {
-    width = window.innerWidth * 0.67;
-    createCanvas
-        .attr('width', width);
-
-    render();
-})
-
-const render = () => {
-    const ctx = createCanvas.node().getContext('2d')
-    let lowerText = document.getElementById("below-display-text")
-    lowerText.innerHTML = "Once you move your mouse away from the photo array, <br> it will reset and the description will disappear."
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-
-    for (let i = 0; i < imgNum; i++){
-        let imgTest = new Image()
-        imgTest.onload = () => {
-            ctx.drawImage(imgTest, 
-                300, 100, width / imgNum - 3, height,
-                i * (width / imgNum), 0, width / imgNum - 4, height)
-        }
-        imgTest.src = photos[i].url
-    }
-}
-
-function mousePos(canvas, e) {
-    let bRect = canvas.getBoundingClientRect();
-    let xCord = e.clientX - bRect.x;
-    return xCord
-}
-
-function redraw(focus) {
-    const ctx = createCanvas.node().getContext('2d')
-    let lowerText = document.getElementById("below-display-text")
-    
-    ctx.clearRect(0 ,0, ctx.canvas.width, ctx.canvas.height)
-    let x = 0;
-
-    for (let j = 0; j < imgNum; j++) {
-        let imgTest = new Image("auto", height)
-
-        if (j === focus) {
-            imgTest.onload = () => {
-                ctx.drawImage(imgTest,
-                    200, 100, (width * 0.3) - 3, height,
-                    x, 0, (width * 0.3) - 4, height);
-                x += (width * 0.3);
-            }
-            lowerText.innerHTML = photos[j].description + "<br><br>" + photos[j].source;
-            imgTest.src = photos[j].url;
-        } else if (j === focus - 1 || j === focus + 1) {
-            imgTest.onload = () => {
-                ctx.drawImage(imgTest,
-                    250, 100, (width * 0.1) - 3, height,
-                    x, 0, (width * 0.1) - 4, height);
-                x += (width * 0.1);
-            }
-            imgTest.src = photos[j].url;
-        } else if (j === focus - 2 || j === focus + 2) {
-            imgTest.onload = () => {
-                ctx.drawImage(imgTest,
-                   250, 100, (width * 0.07) - 3, height,
-                    x, 0, (width * 0.07) - 4, height)
-                x += (width * 0.07);
-            }
-            imgTest.src = photos[j].url;
-        } else {
-            imgTest.onload = () => {
-                ctx.drawImage(imgTest,
-                    300, 150, (width * 0.0189) - 3, height,
-                    x, 0, (width * 0.0189) - 4, height);
-                x += (width * 0.0189);
-            }
-            imgTest.src = photos[j].url;
+const observer = new MutationObserver((mutationsList) => {
+    for (let mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            // Handle the changes to the DOM here
+            const imgCardCount = document.querySelectorAll('.img-card').length;
+            document.documentElement.style.setProperty('--img-card-count', imgCardCount);
         }
     }
-}
+});
 
-const icons = [];
+observer.observe(document, { subtree: true, childList: true });
 
-function createIcon(idx) {
+const render = (obj) => {
+    // let lowerText = document.getElementById("below-display-text")
+    // lowerText.innerHTML = "Once you move your mouse away from the photo array, <br> it will reset and the description will disappear."
+    const imgNum = getImgNum(obj)
 
-    let bar = document.getElementById('icons')
-    let aArr = bar.getElementsByTagName("a")
-    if (aArr.length >= 6) {
-        bar.removeChild(bar.firstChild);
-    }
-
-    let sideBar = d3.select("div#icons")
-        .append("a")
-        .attr("href", photos[idx].url)
-        .attr("target", "_blank")
-        .append("img")
-        .attr("src", photos[idx].url);
-
-}
-
-let clicked = false
-
-
-// work on next time with animations
-// display.addEventListener("mousemove", (e) => {
-//     let x = mousePos(createCanvas.node(), e)
-//     let zone = width / imgNum
-//     let focus;
-//     for (let i = 0; i < imgNum; i++) {
-//         if (x > (i * zone) && i < ((i + 1) * zone)) {
-//             focus = i;
-//         }
-//     }
-//     // createIcon(focus)
-//     redraw(focus)
-//     clicked = true;
-
-// })
-
-display.addEventListener("click", (e) => {
-    let x = mousePos(createCanvas.node(), e)
-    let zone = width / imgNum
-    let focus;
     for (let i = 0; i < imgNum; i++) {
-        if (x > (i * zone) && i < ((i + 1) * zone)) {
-            focus = i;
+        const newElement = document.createElement('div');
+        newElement.dataset.id = i;
+        newElement.className = "img-card"
+        const img = document.createElement('img');
+        img.src = obj[i].url;
+        const desc = document.createElement('p');
+        desc.innerHTML = obj[i].description;
+        const source = document.createElement('p');
+        source.innerHTML = obj[i].source;
+        const date = document.createElement('p');
+        date.innerHTML = obj[i].date;
+        const info = document.createElement('div');
+        info.className = "img-info"
+        info.appendChild(desc);
+        info.appendChild(source);
+        info.appendChild(date);
+        newElement.appendChild(img);
+        newElement.appendChild(info);
+        display.appendChild(newElement);
+    }
+}
+
+
+const searchBar = document.querySelector('#query-input');
+const title = document.querySelector('#query-title');
+searchBar.placeholder = "type to search the 3 databases"
+const aboveText = document.getElementById("above-display-text")
+const lowerText = document.getElementById("below-display-text")
+
+
+searchBar.addEventListener("input", (e) => {
+    query = e.target.value;
+});
+
+
+const form = document.querySelector('form');
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    
+    if (query !== '') {
+        title.innerHTML = "loading..."
+
+        const childElements = display.childNodes;
+
+        // removeChildsWithDelay(childElements);
+        while (display.firstChild) {
+            display.removeChild(display.firstChild);
         }
-    }
-    createIcon(focus)
-    redraw(focus)
-    clicked = true;
 
-})
-
-display.addEventListener("mouseout", (e) => {
-    if (clicked){
-        setTimeout(render, 500)
-        clicked = false;
+        Promise.all([ TEST.cleveland(query), TEST.chicago(query), TEST.harvard(query)])
+            .then((values) => {
+                console.log(values, "values")
+               const photos = createPhotos(values.flat());
+               return photos
+            }).then((photos)=>{
+                title.innerHTML = query;
+                console.log(title, "title")
+                console.log(photos, "photos")
+                render(photos);
+            }).then(()=> {
+                lowerText.innerHTML = `Depictions of "${query}" in art from Museum Open APIs.`;
+                searchBar.value = '';
+            })
+    } else {
+        searchBar.placeholder = "please type a query first"
     }
-})
+});
+// function removeChildsWithDelay(childElements) {
+//     const promises = [];
+
+//     for (let i = childElements.length - 1; i >= 0; i--) {
+//         const child = childElements[i];
+//         const promise = new Promise(resolve => setTimeout(resolve, 200)).then(() => {
+//             display.removeChild(child);
+//         });
+//         promises.push(promise);
+//     }
+
+//     return Promise.all(promises);
+// }
+function removeChildsWithDelay(display) {
+    return new Promise((resolve) => {
+        const intervalId = setInterval(() => {
+            if (!display.firstChild) {
+                clearInterval(intervalId);
+                resolve();
+                return;
+            }
+
+            display.removeChild(display.firstChild);
+        }, 200);
+    });
+}
+
+// form.addEventListener("submit", async (e) => {
+//     e.preventDefault();
+
+//     if (query !== '') {
+//         title.innerHTML = "loading..."
+
+//         const childElements = display.childNodes;
+//         const removalPromise = await removeChildsWithDelay(childElements);
+
+//         Promise.all([TEST.cleveland(query), TEST.chicago(query), TEST.harvard(query)])
+//             .then((values) => {
+//                 // removalPromise.then(() => {
+//                     title.innerHTML = query;
+//                     aboveText.innerHTML = `Depictions of "${query}" in art from Museum Open APIs.`;
+//                     createPhotos(values.flat());
+//                     render();
+//                     searchBar.value = '';
+//                 // });
+//             });
+//     } else {
+//         searchBar.placeholder = "please type a query first"
+//     }
+// });
+
+
+function createPhotos(input) {
+    const photos = {}
+    for (let i = 0; i < input.length; i++) {
+        photos[i] = new Photo(input[i])
+    }
+    return photos
+}
 
 
