@@ -15,6 +15,7 @@ const getImgNum = (photos) => (Object.keys(photos).length);
     // shuffle will take place here
     console.log("in here")
     const photos =createPhotos(values.flat())
+    console.log(photos, "initial photos")
     render(photos)
 }));
 
@@ -66,8 +67,11 @@ const searchBar = document.querySelector('#query-input');
 const title = document.querySelector('#query-title');
 searchBar.placeholder = "type to search and choose from the databases"
 const harvardCheck = document.getElementById('harvard-check');
+const harvardSelect = document.getElementById('harvard-select');
 const clevelandCheck = document.getElementById('cleveland-check');
+const clevelandSelect = document.getElementById('cleveland-select')
 const chicagoCheck = document.getElementById('chicago-check');
+const chicagoSelect = document.getElementById('chicago-select')
 // 
 const aboveText = document.getElementById("above-display-text")
 const lowerText = document.getElementById("below-display-text")
@@ -87,13 +91,15 @@ form.addEventListener("submit", (e) => {
 
         const fetchArr = []
 
-        if (harvardCheck.checked) fetchArr.push(TEST.harvard(query));
-        if (clevelandCheck.checked) fetchArr.push(TEST.cleveland(query))
-        if (chicagoCheck.checked) fetchArr.push(TEST.chicago(query))
+        if (harvardCheck.checked) fetchArr.push(TEST.harvard(query, harvardSelect.value));
+        if (clevelandCheck.checked) fetchArr.push(TEST.cleveland(query, clevelandSelect.value))
+        if (chicagoCheck.checked) fetchArr.push(TEST.chicago(query, chicagoSelect.value))
 
         while (display.firstChild) {
             display.removeChild(display.firstChild);
         }
+
+        console.log(fetchArr, "fetchArr")
 
         Promise.all(fetchArr)
             .then((values) => {
