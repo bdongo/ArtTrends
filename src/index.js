@@ -3,15 +3,15 @@ import Photo from './scripts/photo.js';
 import * as d3 from 'd3';
 import { async } from 'regenerator-runtime';
 
-const imgNum = 24;
 
-let width = window.innerWidth * 0.67;
 
 const height = 350;
 
 let query = "dress";
 
 const photos = {};
+const getImgNum = () => (Object.keys(photos).length);
+let width = window.innerWidth * 0.67;
 
 
 (Promise.all([TEST.cleveland("dress"), TEST.chicago("dress"), TEST.harvard("dress")]).then((values) => {
@@ -22,11 +22,18 @@ const photos = {};
 
 const display = document.querySelector('#img-container')
 
-const createCanvas = d3.select('div#img-container')
-.append('canvas')
-.attr('width', width)
-.attr('height', 350)
-.attr('id', 'canvas');
+
+const observer = new MutationObserver((mutationsList) => {
+    for (let mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            // Handle the changes to the DOM here
+            const imgCardCount = document.querySelectorAll('.img-card').length;
+            document.documentElement.style.setProperty('--img-card-count', imgCardCount);
+        }
+    }
+});
+
+observer.observe(document, { subtree: true, childList: true });
 
 addEventListener("resize", (e) => {
     width = window.innerWidth * 0.67;
@@ -36,22 +43,34 @@ addEventListener("resize", (e) => {
     render();
 })
 
+
+
 const render = () => {
-    const ctx = createCanvas.node().getContext('2d')
+    // const ctx = createCanvas.node().getContext('2d')
     let lowerText = document.getElementById("below-display-text")
     lowerText.innerHTML = "Once you move your mouse away from the photo array, <br> it will reset and the description will disappear."
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-    
-    for (let i = 0; i < imgNum; i++){
-        let imgTest = new Image()
-        imgTest.onload = () => {
-            ctx.drawImage(imgTest, 
-                300, 100, width / imgNum - 3, height,
-                i * (width / imgNum), 0, width / imgNum - 4, height)
-            }
-            imgTest.src = photos[i].url
-        }
+    // ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+    const imgNum = getImgNum()
+    const cardWidth = width / imgNum
+    console.log(cardWidth, "cardWidth")
+    for (let i = 0; i < imgNum; i++) {
+        const newElement = document.createElement('div');
+        // newElement.style.width = `${cardWidth}px`;
+        newElement.className = "img-card"
+        const img = document.createElement('img');
+        img.src = photos[i].url;
+        newElement.appendChild(img)
+        display.appendChild(newElement)
+
+        // let imgTest = new Image()
+        // imgTest.onload = () => {
+        //     ctx.drawImage(imgTest,
+        //         300, 100, width / imgNum - 3, height,
+        //         i * (width / imgNum), 0, width / imgNum - 4, height)
+        // }
+        // imgTest.src = photos[i].url
     }
+}
     
     function mousePos(canvas, e) {
         let bRect = canvas.getBoundingClientRect();

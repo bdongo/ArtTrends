@@ -258,6 +258,32 @@ body {
   border-style: solid;
   border-color: rgb(43, 40, 40);
   border-right: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-card {
+  height: 350px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  width: calc(100% / var(--img-card-count));
+  transition: all 0.3s;
+}
+
+.img-card:hover {
+  border-radius: 0;
+  height: 400px;
+  width: 400px !important;
+}
+
+.img-card > img {
+  max-height: 500px;
+  min-height: 350px;
+  object-fit: cover;
 }
 
 .hidden {
