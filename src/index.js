@@ -44,8 +44,20 @@ const render = (obj) => {
         newElement.className = "img-card"
         const img = document.createElement('img');
         img.src = obj[i].url;
-        newElement.appendChild(img)
-        display.appendChild(newElement)
+        const desc = document.createElement('p');
+        desc.innerHTML = obj[i].description;
+        const source = document.createElement('p');
+        source.innerHTML = obj[i].source;
+        const date = document.createElement('p');
+        date.innerHTML = obj[i].date;
+        const info = document.createElement('div');
+        info.className = "img-info"
+        info.appendChild(desc);
+        info.appendChild(source);
+        info.appendChild(date);
+        newElement.appendChild(img);
+        newElement.appendChild(info);
+        display.appendChild(newElement);
     }
 }
 

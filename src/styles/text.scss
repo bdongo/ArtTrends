@@ -29,13 +29,14 @@ h3 {
 
 #query-title {
     font-weight: bold;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 #below-display-text{
     padding-top: 5px;
-    width: 67vw;
+    // width: 67vw;
     padding-bottom: 10px;
+    font-weight: bold;
     text-align: end;
     font-style: italic;
 }

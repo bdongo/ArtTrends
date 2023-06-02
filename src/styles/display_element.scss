@@ -12,6 +12,7 @@
     display: flex;   
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     border: 2px solid rgb(43, 40, 40);
     border-radius: 5px;
     background-color: rgba(43, 40, 40, 0.704);
@@ -24,30 +25,59 @@
 
 
 #img-container {
+    position: relative;
+    padding: 5px;
     background-color: rgb(43, 40, 40);
-    height: 350px;
+    height: 375px;
     width: 80vw;
     border-width: 2px;
     border-style: solid;
     border-color: rgb(43, 40, 40);
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
+}
+
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        margin-left: 0%;
+        width: 100%;
+    }
+
+    to {
+        margin-left: -100%;
+        width: 300%;
+    }
 }
 
 .img-card {
-    height: 350px;
+    z-index: 1;
+    height: 375px;
     overflow: hidden;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 15px;
     width: calc(100% / var(--img-card-count));
-    // transition: all 0.3s;
     flex-grow: 1;
     flex-shrink: 1;
     transition: height 0.5s ease-in-out, border-radius 0.5s ease-in-out, flex-grow 1s ease-in-out, flex-shrink 1s ease-in-out, width 0.5s ease-in-out;
     transition-delay: 0.2s, 0.2s, 0.2s, 0.2s, 0.2s;
+    animation-duration: 3s;
+    animation-name: slidein;  
 }
 .img-card:hover {
     border-radius: 0;
@@ -65,12 +95,31 @@
     transition: all 0.4s;
 }
 
+.img-card:hover > .img-info {
+    position: absolute;
+    top: 375px;
+    left: 0;
+    padding: 5px;
+    width: 80vw;
+    height: auto;
+    border: 2px solid rgb(43, 40, 40);
+    border-top: none;
+    background-color: rgb(43, 40, 40);
+    border-radius: 0 0 5px 5px;
+}
+
 .img-card>img {
     max-height: 500px;
-    min-height: 350px;
+    min-height: 375px;
     min-width: 400px;
     object-fit: cover;
     transition: all 0.4s;
+}
+
+.img-info {
+
+    width: 0px;
+    height: 0px;
 }
 
 
