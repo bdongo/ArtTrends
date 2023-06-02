@@ -1,13 +1,18 @@
+#page {
+    height: 80vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #display-element {
-    position: fixed;
-    top: 25vh;
-    left: 20vw;
     height: auto;
-    width: 67vw;
+    width: 80vw;
     display: flex;   
     flex-direction: column;
     justify-content: space-between;
-    border-right: 2px solid rgb(43, 40, 40);
+    border: 2px solid rgb(43, 40, 40);
     background-color: rgba(43, 40, 40, 0.704);
     padding: 5px;
     h2 {
@@ -20,11 +25,10 @@
 #img-container {
     background-color: rgb(43, 40, 40);
     height: 350px;
-    width: 67vw;
+    width: 80vw;
     border-width: 2px;
     border-style: solid;
     border-color: rgb(43, 40, 40);
-    border-right: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,20 +40,36 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 8px;
+    border-radius: 15px;
     width: calc(100% / var(--img-card-count));
-    transition: all 0.3s;
+    // transition: all 0.3s;
+    flex-grow: 1;
+    flex-shrink: 1;
+    transition: height 0.7s ease-in-out, border-radius 0.5s ease-in-out, flex-grow 1s ease-in-out, flex-shrink 1s ease-in-out, width 0.7s ease-in-out;
+    transition-delay: 0.7s, 0.7s, 0.7s, 0.7s, 0.7s;
 }
 .img-card:hover {
     border-radius: 0;
-    height: 400px;
-    width: 400px !important;
+    height: 500px;
+    width: 400px;
+    max-width: 750px;
+    transition-delay: 0s, 0s, 0s, 0s, 0s;
+    // flex-grow: 1;
+    // flex-shrink: 0;
 }
 
-.img-card > img {
+.img-card:hover>img {
+    min-height: 500px;
+    min-width: 400px;
+    transition: all 0.4s;
+}
+
+.img-card>img {
     max-height: 500px;
     min-height: 350px;
+    min-width: 400px;
     object-fit: cover;
+    transition: all 0.4s;
 }
 
 

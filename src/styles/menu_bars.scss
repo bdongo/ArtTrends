@@ -10,6 +10,9 @@ body {
     width: auto;
     height: 150px;
     background-color: rgb(43, 40, 40);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #corner{
@@ -28,9 +31,6 @@ body {
 }
 
 #link-list {
-    position: absolute;
-    top: 44px;
-    left: 80vw;
     width: 19vw;
     display: flex;
     flex-direction: column;
