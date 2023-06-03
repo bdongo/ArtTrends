@@ -3,7 +3,7 @@
 
 __Technologies, Libraries, APIs:__
 
-This project uses [D3](https://d3js.org/), [Harvard Art Museums API](https://github.com/harvardartmuseums/api-docs), [The Cleveland Museum of Art API](https://openaccess-api.clevelandart.org/), [Art Institute of Chicago API](https://api.artic.edu/docs/#introduction) to fetch, manipulate and compile image data.
+This project uses [Harvard Art Museums API](https://github.com/harvardartmuseums/api-docs), [The Cleveland Museum of Art API](https://openaccess-api.clevelandart.org/), [Art Institute of Chicago API](https://api.artic.edu/docs/#introduction) to fetch, manipulate and compile image data.
 
 
 The challenge was to study the fetch request formatting and returned API response of each API. Each fetch is tailored to return the same infromation from different keys of the API response. With the creation of a new Photo object class. These are made into new Photo objects to be stored client side in a cache to be called any time to render the display.
