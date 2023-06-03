@@ -11,7 +11,7 @@ const pinnedPhotos = {}
 
 const getImgNum = (photos) => (Object.keys(photos).length);
 
-(Promise.all([TEST.cleveland("dress"), TEST.chicago("dress"), TEST.harvard("dress")]).then((values) => {
+(Promise.all([TEST.harvard("dress"), TEST.cleveland("dress"), TEST.chicago("dress")]).then((values) => {
     // shuffle will take place here
     console.log("in here")
     const photos =createPhotos(values.flat())
