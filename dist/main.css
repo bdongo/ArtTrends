@@ -340,10 +340,10 @@ body {
   right: 0;
   padding: 5px;
   margin-top: 10px;
-  width: 65vw;
+  width: auto;
+  min-width: 30vw;
   height: auto;
   border: 2px solid rgb(43, 40, 40);
-  border-top: none;
   background-color: white;
   border-radius: 0 0 5px 5px;
 }
@@ -380,7 +380,7 @@ h2 {
 }
 
 #menu-title {
-  margin-left: 50px;
+  margin-left: 20px;
 }
 
 #menu-title {
