@@ -1,7 +1,7 @@
-export const harvard = async (query) => {
+export const harvard = async (query, num = 5) => {
     let output = [];
 
-    let res = await fetch(`https://api.harvardartmuseums.org/image?q=${query}&size=5&apikey=12403398-3c09-42ff-af07-f434bfd000a1&hasimage=true&permissionlevel=0`, {
+    let res = await fetch(`https://api.harvardartmuseums.org/image?q=${query}&size=${num}&apikey=12403398-3c09-42ff-af07-f434bfd000a1&hasimage=true&permissionlevel=0`, {
         headers: { "Accept": "application/json" }
     })
 
@@ -11,7 +11,7 @@ export const harvard = async (query) => {
         for (let i = 0; i < data.records.length; i++) {
     
             if (data.records[i].baseimageurl) {
-                let dateCheck = parseInt(data.records[i].date.split("-")[0])
+                let dateCheck = parseInt(data.records[i].date?.split("-")[0])
                 if (dateCheck === 0) {
                     dateCheck = 1
                 }
@@ -42,10 +42,10 @@ export const harvard = async (query) => {
     }
 }
 
-export const cleveland = async (query) => {
+export const cleveland = async (query, num = 5) => {
     let output = [];
 
-    let res = await fetch(`https://openaccess-api.clevelandart.org/api/artworks/?q=${query}&has_image=1&limit=5&created_after=1400`, {
+    let res = await fetch(`https://openaccess-api.clevelandart.org/api/artworks/?q=${query}&has_image=1&limit=${num}&created_after=1400`, {
         headers: { "Accept": "application/json" }
     })
     if (res.ok) {   
@@ -114,10 +114,10 @@ export const chicago2 = async (url) => {
     }
 }
 
-export const chicago = async (query) => {
+export const chicago = async (query, num = 5) => {
     let output = []
 
-    let res = await fetch(`https://api.artic.edu/api/v1/artworks/search?q=${query}/manifest.json`, {
+    let res = await fetch(`https://api.artic.edu/api/v1/artworks/search?q=${query}&limit=${num}/manifest.json`, {
         headers: { "Accept": "application/json" }
     })
 
