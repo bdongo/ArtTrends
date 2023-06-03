@@ -180,10 +180,9 @@ body {
   font-size: 14px;
 }
 
-#link-list > li > a > img {
-  padding-right: 5px;
+#link-list > li > a > svg {
+  padding-right: 10px;
   width: 20px;
-  opacity: 70%;
 }
 
 #form-container {
@@ -271,7 +270,6 @@ body {
 #img-container {
   position: relative;
   padding: 5px;
-  background-color: rgb(43, 40, 40);
   height: 375px;
   width: 80vw;
   border-width: 2px;

@@ -65,7 +65,7 @@ const render = (obj) => {
 // form elements
 const searchBar = document.querySelector('#query-input');
 const title = document.querySelector('#query-title');
-searchBar.placeholder = "type to search and choose from the databases"
+searchBar.placeholder = "search and select from museum databases..."
 const harvardCheck = document.getElementById('harvard-check');
 const harvardSelect = document.getElementById('harvard-select');
 const clevelandCheck = document.getElementById('cleveland-check');
