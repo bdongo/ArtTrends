@@ -11,7 +11,7 @@ export const harvard = async (query, num = 5) => {
         for (let i = 0; i < data.records.length; i++) {
     
             if (data.records[i].baseimageurl) {
-                let dateCheck = parseInt(data.records[i].date.split("-")[0])
+                let dateCheck = parseInt(data.records[i].date?.split("-")[0])
                 if (dateCheck === 0) {
                     dateCheck = 1
                 }
@@ -117,7 +117,7 @@ export const chicago2 = async (url) => {
 export const chicago = async (query, num = 5) => {
     let output = []
 
-    let res = await fetch(`https://api.artic.edu/api/v1/artworks/search?q=${query}&limit=${num + 1}/manifest.json`, {
+    let res = await fetch(`https://api.artic.edu/api/v1/artworks/search?q=${query}&limit=${num}/manifest.json`, {
         headers: { "Accept": "application/json" }
     })
 

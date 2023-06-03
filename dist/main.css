@@ -155,7 +155,7 @@ body {
   display: flex;
   width: auto;
   height: 120px;
-  border: 3px solid rgba(67, 66, 66, 0.436);
+  border-bottom: 3px solid rgba(67, 66, 66, 0.436);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -187,7 +187,8 @@ body {
 }
 
 #form-container {
-  width: 300px;
+  margin-top: 30px;
+  width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -195,7 +196,7 @@ body {
 }
 
 #query-form {
-  width: 300px;
+  width: 400px;
   height: 30px;
   display: flex;
   justify-content: center;
@@ -206,9 +207,10 @@ body {
   padding-left: 10px;
   border: 3px solid rgb(67, 66, 66);
   border-radius: 10px 0 0 10px;
-  width: 220px;
+  width: 300px;
   height: 30px;
   font-size: 15px;
+  outline: none;
 }
 
 #query-submit {
@@ -224,12 +226,23 @@ body {
 }
 
 #selection-form {
-  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
   accent-color: rgb(67, 66, 66);
 }
 
 #selection-form > label {
   color: rgb(67, 66, 66);
+}
+
+#selection-form > input {
+  margin-right: 5px;
+}
+
+#selection-form > select {
+  margin-right: 15px;
 }
 
 #page {
