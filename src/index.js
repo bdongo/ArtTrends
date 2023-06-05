@@ -9,6 +9,7 @@ let query = "";
 
 const pinnedPhotos = {}
 
+
 const getImgNum = (photos) => (Object.keys(photos).length);
 
 (Promise.all([TEST.harvard("dress"), TEST.cleveland("dress"), TEST.chicago("dress")]).then((values) => {
@@ -77,6 +78,39 @@ const render = (obj) => {
         display.appendChild(newElement);
     }
 }
+const historyContainer = document.getElementById('history-container');
+const searchHistory = {
+    "boots": [TEST.harvard("boots"), TEST.cleveland("boots"), TEST.chicago("boots")],
+    "suit": [TEST.harvard("suit"), TEST.cleveland("suit"), TEST.chicago("suit")],
+    "dress": [TEST.harvard("dress"), TEST.cleveland("dress"), TEST.chicago("dress")]
+};
+
+historyContainer.addEventListener("click", e => {
+    const query = e.target.textContent.trim()
+    console.log(searchHistory[query]);
+})
+const attachHistory = (query, fetchArr) => {
+    searchHistory[query] = fetchArr
+    
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    svg.setAttribute("width", "12");
+    svg.setAttribute("height", "12");
+    svg.setAttribute("fill", "rgb(67, 66, 66)");
+    svg.setAttribute("class", "bi bi-search");
+    svg.setAttribute("viewBox", "0 0 16 16");
+
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", "M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0");
+
+    svg.appendChild(path);
+
+    const searchDiv = document.createElement("div")
+    searchDiv.className = "search-link"
+    searchDiv.innerHTML = query;
+    searchDiv.appendChild(svg);
+    historyContainer.appendChild(searchDiv)
+}
 
 // form elements
 const searchBar = document.querySelector('#query-input');
@@ -127,6 +161,7 @@ form.addEventListener("submit", (e) => {
                 console.log(title, "title")
                 console.log(photos, "photos")
                 render(photos);
+                attachHistory(query, fetchArr)
             }).then(()=> {
                 lowerText.innerHTML = `Depictions of "${query}" in art from Museum Open APIs.`;
                 searchBar.value = '';
