@@ -20,6 +20,22 @@ const getImgNum = (photos) => (Object.keys(photos).length);
 }));
 
 const display = document.querySelector('#img-container')
+let open = false;
+display.addEventListener('click',  e => {
+
+    if (e.target.tagName !== 'IMG') return;
+
+    const parentDiv = e.target.parentNode;
+
+    if (!open) {
+        parentDiv.id = 'clicked';
+        open = true;
+    } else if (open && parentDiv.id === "clicked") {
+        parentDiv.removeAttribute('id');
+        open = false;
+    }
+        
+});
 
 
 const observer = new MutationObserver((mutationsList) => {
