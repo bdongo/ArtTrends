@@ -27,7 +27,7 @@
 #img-container {
     position: relative;
     padding: 5px;
-    background-color: rgb(43, 40, 40);
+    // background-color: rgb(43, 40, 40);
     height: 375px;
     width: 80vw;
     border-width: 2px;
@@ -101,6 +101,7 @@
     right: 0;
     padding: 5px;
     margin-top: 10px;
+    font-size: 16px;
     // width: 65vw;
     width: auto;
     min-width: 30vw;
@@ -125,6 +126,7 @@
 }
 
 .img-info {
+    font-size: 0px;
     width: 0px;
     height: 0px;
     transition: height 0.3s ease-in-out;
@@ -135,8 +137,28 @@
     display: none;
 }
 
+#clicked {
+    height: 500px;
+    width: 800px;
+    border-radius: 0;
+}
 
-
+#clicked >.img-info {
+    position: absolute;
+    top: 375px;
+    right: 0;
+    padding: 5px;
+    margin-top: 10px;
+    font-size: 16px;
+    // width: 65vw;
+    width: auto;
+    min-width: 30vw;
+    height: auto;
+    border: 2px solid rgb(43, 40, 40);
+    // border-top: none;
+    background-color: white;
+    border-radius: 0 0 5px 5px;
+}
 
 
 

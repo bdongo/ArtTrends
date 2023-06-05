@@ -11,7 +11,7 @@ const pinnedPhotos = {}
 
 const getImgNum = (photos) => (Object.keys(photos).length);
 
-(Promise.all([TEST.cleveland("dress"), TEST.chicago("dress"), TEST.harvard("dress")]).then((values) => {
+(Promise.all([TEST.harvard("dress"), TEST.cleveland("dress"), TEST.chicago("dress")]).then((values) => {
     // shuffle will take place here
     console.log("in here")
     const photos =createPhotos(values.flat())
@@ -20,6 +20,22 @@ const getImgNum = (photos) => (Object.keys(photos).length);
 }));
 
 const display = document.querySelector('#img-container')
+let open = false;
+display.addEventListener('click',  e => {
+
+    if (e.target.tagName !== 'IMG') return;
+
+    const parentDiv = e.target.parentNode;
+
+    if (!open) {
+        parentDiv.id = 'clicked';
+        open = true;
+    } else if (open && parentDiv.id === "clicked") {
+        parentDiv.removeAttribute('id');
+        open = false;
+    }
+        
+});
 
 
 const observer = new MutationObserver((mutationsList) => {
@@ -65,7 +81,7 @@ const render = (obj) => {
 // form elements
 const searchBar = document.querySelector('#query-input');
 const title = document.querySelector('#query-title');
-searchBar.placeholder = "type to search and choose from the databases"
+searchBar.placeholder = "search and select from museum databases..."
 const harvardCheck = document.getElementById('harvard-check');
 const harvardSelect = document.getElementById('harvard-select');
 const clevelandCheck = document.getElementById('cleveland-check');
