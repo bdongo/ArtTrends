@@ -7,7 +7,9 @@ import { async } from 'regenerator-runtime';
 
 let query = "";
 
-const pinnedPhotos = {}
+const savedPhotos = [];
+let currentSearch = [];
+let clickedPhoto = null;
 
 
 const getImgNum = (photos) => (Object.keys(photos).length);
@@ -16,6 +18,7 @@ const getImgNum = (photos) => (Object.keys(photos).length);
     // shuffle will take place here
     console.log("in here")
     const photos =createPhotos(values.flat())
+    currentSearch = photos;
     console.log(photos, "initial photos")
     render(photos)
     searchHistory["dress"] = photos;
@@ -31,8 +34,50 @@ const getImgNum = (photos) => (Object.keys(photos).length);
     searchHistory["suit"] = photos;
 }));
 
+const viewToggle = document.querySelector('#view-toggle');
+const searchToggle = document.querySelector('#search-toggle');
+const savedToggle = document.querySelector('#saved-toggle');
 const display = document.querySelector('#img-container')
 const clickModal = document.querySelector('.click-modal');
+
+viewToggle.addEventListener("click", e => {
+    console.log(e.target)
+
+    if (e.target.id === "search-toggle") {
+        // if (searchToggle.checked ) return;
+
+        clickModal.classList.add('hidden');
+
+        savedToggle.checked = false;
+        searchToggle.checked = true;
+
+        while (display.firstChild) {
+            display.removeChild(display.firstChild);
+        }
+
+        render(currentSearch);
+
+    } else if (e.target.id === "saved-toggle") {
+
+        clickModal.classList.add('hidden');
+
+        if (savedPhotos.length === 0) {
+            savedToggle.checked = false;
+            console.log("error")
+        } else {
+            savedToggle.checked = true;
+            searchToggle.checked = false;
+
+            while (display.firstChild) {
+                display.removeChild(display.firstChild);
+            }
+
+            render(savedPhotos)
+
+        }
+
+    }
+})
 
 clickModal.addEventListener('click', e => {
     const target = e.target
@@ -46,7 +91,9 @@ clickModal.addEventListener('click', e => {
         clickModal.classList.add('hidden');
         open = false;
     } else if (target.id === "add-button" || target.closest("#add-button")) {
-        // Code for add-button class
+        savedPhotos.push(clickedPhoto)
+       console.log(savedPhotos)
+       clickedPhoto = null;
     }
 })
 let open = false;
@@ -54,15 +101,17 @@ display.addEventListener('click',  e => {
 
     if (e.target.tagName !== 'IMG') return;
 
-    const parentDiv = e.target.parentNode;
+    const card = e.target.parentNode;
+    console.log(card, "card")
 
     if (!open) {
-        parentDiv.id = 'clicked';
+        card.id = 'clicked';
+        clickedPhoto = currentSearch[card.dataset.id]
         clickModal.id = "open";
         clickModal.classList.remove('hidden');
         open = true;
-    } else if (open && parentDiv.id === "clicked") {
-        parentDiv.removeAttribute('id');
+    } else if (open && card.id === "clicked") {
+        card.removeAttribute('id');
         clickModal.removeAttribute('id');
         clickModal.classList.add('hidden');
         open = false;
@@ -194,6 +243,7 @@ form.addEventListener("submit", (e) => {
                 title.innerHTML = query;
                 console.log(title, "title")
                 console.log(photos, "photos")
+                currentSearch = photos
                 render(photos);
                 attachHistory(query, photos)
             }).then(()=> {
@@ -206,10 +256,11 @@ form.addEventListener("submit", (e) => {
 });
 
 function createPhotos(input) {
-    const photos = {}
-    for (let i = 0; i < input.length; i++) {
-        photos[i] = new Photo(input[i])
-    }
+    const photos = []
+    // for (let i = 0; i < input.length; i++) {
+    //     photos[i] = new Photo(input[i])
+    // }
+    input.map(data => photos.push(new Photo(data)))
     return photos
 }
 
