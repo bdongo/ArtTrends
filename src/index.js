@@ -118,6 +118,8 @@ viewToggle.addEventListener("click", e => {
         if (savedPhotos.length === 0) {
             savedToggle.checked = true;
             searchToggle.checked = false;
+            title.innerHTML = "saved photos";
+            lowerText.innerHTML = `Depictions of "saved photos" in art from Museum Open APIs.`;
 
             while (display.firstChild) {
                 display.removeChild(display.firstChild);
