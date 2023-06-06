@@ -101,3 +101,47 @@ body {
 #selection-form>select {
     margin-right: 15px;
 }
+#history-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+#history-container {
+    margin-top: 5px;
+    overflow: scroll;
+    height: 45px;
+    width: auto;
+    border: solid 2px rgb(67, 66, 66);
+    padding: 7px 15px;
+    border-radius: 5px;
+}
+
+.search-link {
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+
+#view-toggle {
+    margin-top: 15px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+
+}
+
+#view-toggle > label {
+    width: 85px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#view-toggle > label > input {
+    accent-color: rgb(67, 66, 66);
+}

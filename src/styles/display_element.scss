@@ -6,6 +6,11 @@
     align-items: center;
 }
 
+input {
+    accent-color: rgb(67, 66, 66);
+    cursor: pointer;
+}
+
 #display-element {
     height: auto;
     width: 80vw;
@@ -65,6 +70,7 @@
 .img-card {
     z-index: 1;
     height: 375px;
+    max-width: 700px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -78,6 +84,7 @@
     transition-delay: 0.2s, 0.2s, 0.2s, 0.2s, 0.2s;
     animation-duration: 3s;
     animation-name: slidein;  
+    cursor: pointer;
 }
 .img-card:hover {
     border-radius: 0;
@@ -104,7 +111,7 @@
     font-size: 16px;
     // width: 65vw;
     width: auto;
-    min-width: 30vw;
+    min-width: 32vw;
     height: auto;
     border: 2px solid rgb(43, 40, 40);
     // border-top: none;
@@ -132,15 +139,12 @@
     transition: height 0.3s ease-in-out;
 }
 
-
-.hidden {
-    display: none;
-}
-
 #clicked {
+    z-index: 8;
     height: 500px;
     width: 800px;
     border-radius: 0;
+    cursor: pointer;
 }
 
 #clicked >.img-info {
@@ -150,14 +154,102 @@
     padding: 5px;
     margin-top: 10px;
     font-size: 16px;
-    // width: 65vw;
     width: auto;
-    min-width: 30vw;
+    min-width: 32vw;
     height: auto;
     border: 2px solid rgb(43, 40, 40);
     // border-top: none;
     background-color: white;
     border-radius: 0 0 5px 5px;
+}
+#clicked >.img-info>p {
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+#clicked>.img-info > label {
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(43, 40, 40);
+    border-radius: 4px;
+    padding: 2px;
+}
+
+#clicked>.img-info>label > input {
+    accent-color: rgb(67, 66, 66);
+}
+
+.bi {
+  color: rgb(43, 40, 40);
+}
+
+
+
+.click-modal {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.hidden {
+    display: none;
+}
+
+#open {
+    position: absolute;
+    z-index: 5;
+    height: 75vh;
+    width: 92vw;
+    background-color: none;
+    opacity: 1;
+}
+
+.modal-button-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.modal-button {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+
+.error-card {
+    z-index: 1;
+    height: 375px;
+    max-width: 700px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    width: calc(100% / var(--img-card-count));
+    flex-grow: 1;
+    flex-shrink: 1;
+    transition: height 0.5s ease-in-out, border-radius 0.5s ease-in-out, flex-grow 1s ease-in-out, flex-shrink 1s ease-in-out, width 0.5s ease-in-out;
+    transition-delay: 0.2s, 0.2s, 0.2s, 0.2s, 0.2s;
+    animation-duration: 3s;
+    animation-name: slidein;
+    cursor: pointer;
+
+    p {
+        font-size: 22px;
+    }
+
+    div {
+        height: 60px;
+        width: 60px;
+        font-size: 60px;
+    }
 }
 
 
