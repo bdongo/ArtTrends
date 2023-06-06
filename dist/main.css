@@ -430,7 +430,7 @@ body {
   position: absolute;
   z-index: 5;
   height: 75vh;
-  width: 90vw;
+  width: 92vw;
   background-color: none;
   opacity: 1;
 }
@@ -445,6 +445,10 @@ body {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
 }
 
 h1 {

@@ -33,6 +33,22 @@ const getImgNum = (photos) => (Object.keys(photos).length);
 
 const display = document.querySelector('#img-container')
 const clickModal = document.querySelector('.click-modal');
+
+clickModal.addEventListener('click', e => {
+    const target = e.target
+    console.log(target)
+    if (target.id === "close-modal" || target.closest("#close-modal")) {
+        console.log("closemodal")
+        const openCard = document.querySelector('#clicked')
+        console.log(openCard, "opencard")
+        openCard.removeAttribute('id');
+        clickModal.removeAttribute('id');
+        clickModal.classList.add('hidden');
+        open = false;
+    } else if (target.id === "add-button" || target.closest("#add-button")) {
+        // Code for add-button class
+    }
+})
 let open = false;
 display.addEventListener('click',  e => {
 
