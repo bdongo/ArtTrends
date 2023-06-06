@@ -10,6 +10,7 @@ let query = "";
 const savedPhotos = [];
 let currentSearch = [];
 let view = [];
+let viewName = 'dress';
 let clickedPhoto = null;
 const searchHistory = {};
 let open = false;
@@ -94,9 +95,11 @@ viewToggle.addEventListener("click", e => {
 
     if (e.target.id === "search-toggle") {
         // if (searchToggle.checked ) return;
-        view = currentSearch;
         clickModal.classList.add('hidden');
         open = false;
+
+        title.innerHTML = viewName;
+        lowerText.innerHTML = `Depictions of "${viewName}" in art from Museum Open APIs.`;
 
         savedToggle.checked = false;
         searchToggle.checked = true;
@@ -115,6 +118,8 @@ viewToggle.addEventListener("click", e => {
         if (savedPhotos.length === 0) {
             savedToggle.checked = false;
         } else {
+            title.innerHTML = "saved photos";
+            lowerText.innerHTML = `Depictions of "saved photos" in art from Museum Open APIs.`;
             savedToggle.checked = true;
             searchToggle.checked = false;
             view = savedPhotos;
@@ -189,6 +194,8 @@ historyContainer.addEventListener("click", e => {
     }
 
     render(searchHistory[query])
+    currentSearch = searchHistory[query]
+    viewName = query;
     title.innerHTML = query;
     lowerText.innerHTML = `Depictions of "${query}" in art from Museum Open APIs.`;
 })
@@ -257,6 +264,7 @@ form.addEventListener("submit", (e) => {
                const photos = createPhotos(values.flat());
                return photos
             }).then((photos)=>{
+                viewName = query;
                 title.innerHTML = query;
                 currentSearch = photos
                 render(photos);

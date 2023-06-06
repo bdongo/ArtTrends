@@ -297,6 +297,7 @@ body {
 
 input {
   accent-color: rgb(67, 66, 66);
+  cursor: pointer;
 }
 
 #display-element {
@@ -350,6 +351,7 @@ input {
 .img-card {
   z-index: 1;
   height: 375px;
+  max-width: 700px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -363,6 +365,7 @@ input {
   transition-delay: 0.2s, 0.2s, 0.2s, 0.2s, 0.2s;
   animation-duration: 3s;
   animation-name: slidein;
+  cursor: pointer;
 }
 
 .img-card:hover {
@@ -419,6 +422,7 @@ input {
   height: 500px;
   width: 800px;
   border-radius: 0;
+  cursor: pointer;
 }
 
 #clicked > .img-info {
