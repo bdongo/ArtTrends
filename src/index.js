@@ -43,10 +43,12 @@ display.addEventListener('click',  e => {
     if (!open) {
         parentDiv.id = 'clicked';
         clickModal.id = "open";
+        clickModal.classList.remove('hidden');
         open = true;
     } else if (open && parentDiv.id === "clicked") {
         parentDiv.removeAttribute('id');
         clickModal.removeAttribute('id');
+        clickModal.classList.add('hidden');
         open = false;
     }
         

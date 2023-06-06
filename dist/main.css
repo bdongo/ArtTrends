@@ -417,12 +417,34 @@ body {
   margin-bottom: 5px;
 }
 
+.click-modal {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.hidden {
+  display: none;
+}
+
 #open {
   position: absolute;
   z-index: 5;
-  height: 70vh;
-  width: 82vw;
+  height: 75vh;
+  width: 90vw;
   background-color: none;
+  opacity: 1;
+}
+
+.modal-button-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.modal-button {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 h1 {
