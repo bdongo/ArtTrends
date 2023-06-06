@@ -1,9 +1,18 @@
 #page {
+    position: relative;
     height: 75vh;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#info-button {
+    padding-right: 10px;
+    font-size: 15px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 input {

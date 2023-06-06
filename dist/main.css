@@ -274,6 +274,9 @@ body {
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-between;
+  padding: 9px;
+  border-radius: 5px;
+  border: solid 2px rgb(67, 66, 66);
 }
 
 #view-toggle > label {
@@ -288,11 +291,20 @@ body {
 }
 
 #page {
+  position: relative;
   height: 75vh;
   width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#info-button {
+  padding-right: 10px;
+  font-size: 15px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 input {
@@ -560,4 +572,41 @@ h2 {
   font-style: italic;
   width: 80vw;
   transform: all 0.5s ease-in-out;
+}
+
+.intro-modal {
+  z-index: 10;
+  background-color: rgba(43, 40, 40, 0.543);
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-page {
+  position: relative;
+  border-radius: 8px;
+  background-color: white;
+  height: 50vh;
+  width: 50vw;
+  border: 2px solid rgb(43, 40, 40);
+}
+.modal-page .bi-arrow-90deg-up {
+  font-size: 20px;
+}
+.modal-page .bi-file-excel {
+  padding: 7px;
+  font-size: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.modal-page .bi-info-circle-fill {
+  padding: 7px;
+  font-size: 15px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }

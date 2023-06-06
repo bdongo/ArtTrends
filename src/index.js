@@ -75,6 +75,11 @@ const checkboxHandler = (e) => {
     currentSearch = photos;
     render(photos)
     searchHistory["dress"] = photos;
+    const cards = document.querySelectorAll('.img-card')
+    const card = cards[7]
+    card.id = 'clicked';
+    clickModal.id = "open";
+    clickModal.classList.remove('hidden');
 }));
 
 (Promise.all([TEST.harvard("boots",10), TEST.cleveland("boots",10), TEST.chicago("boots",10)]).then((values) => {
