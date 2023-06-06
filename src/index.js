@@ -116,7 +116,24 @@ viewToggle.addEventListener("click", e => {
         open = false;
 
         if (savedPhotos.length === 0) {
-            savedToggle.checked = false;
+            savedToggle.checked = true;
+            searchToggle.checked = false;
+
+            while (display.firstChild) {
+                display.removeChild(display.firstChild);
+            }
+            
+            const newElement = document.createElement('div');
+            newElement.className = "error-card"
+            const message = document.createElement('p');
+            message.innerHTML = "nothing saved yet!";
+
+            const icon = document.createElement('div');
+            icon.className = "bi bi-folder-x";
+            
+            newElement.appendChild(icon);
+            newElement.appendChild(message);
+            display.appendChild(newElement);
         } else {
             title.innerHTML = "saved photos";
             lowerText.innerHTML = `Depictions of "saved photos" in art from Museum Open APIs.`;

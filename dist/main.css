@@ -497,6 +497,34 @@ input {
   outline: none;
 }
 
+.error-card {
+  z-index: 1;
+  height: 375px;
+  max-width: 700px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  width: calc(100% / var(--img-card-count));
+  flex-grow: 1;
+  flex-shrink: 1;
+  transition: height 0.5s ease-in-out, border-radius 0.5s ease-in-out, flex-grow 1s ease-in-out, flex-shrink 1s ease-in-out, width 0.5s ease-in-out;
+  transition-delay: 0.2s, 0.2s, 0.2s, 0.2s, 0.2s;
+  animation-duration: 3s;
+  animation-name: slidein;
+  cursor: pointer;
+}
+.error-card p {
+  font-size: 22px;
+}
+.error-card div {
+  height: 60px;
+  width: 60px;
+  font-size: 60px;
+}
+
 h1 {
   font-size: 40px;
 }
