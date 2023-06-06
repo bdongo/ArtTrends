@@ -32,6 +32,7 @@ h3 {
 #query-title {
     font-weight: bold;
     text-transform: capitalize;
+    transform: all 0.5s ease-in-out;
 }
 
 #below-display-text{
@@ -42,4 +43,5 @@ h3 {
     font-weight: bold;
     font-style: italic;
     width: 80vw;
+    transform: all 0.5s ease-in-out;
 }

@@ -70,6 +70,8 @@ const checkboxHandler = (e) => {
 (Promise.all([TEST.harvard("dress"), TEST.cleveland("dress"), TEST.chicago("dress")]).then((values) => {
     // shuffle will take place here
     const photos =createPhotos(values.flat())
+    title.innerHTML = "Dress";
+    lowerText.innerHTML = `Depictions of "dress" in art from Museum Open APIs.`;
     currentSearch = photos;
     render(photos)
     searchHistory["dress"] = photos;
@@ -207,6 +209,8 @@ const historyContainer = document.getElementById('history-container');
 
 historyContainer.addEventListener("click", e => {
     const query = e.target.textContent.trim()
+    savedToggle.checked = false;
+    searchToggle.checked = true;
 
     while (display.firstChild) {
         display.removeChild(display.firstChild);
@@ -285,7 +289,9 @@ form.addEventListener("submit", (e) => {
             }).then((photos)=>{
                 viewName = query;
                 title.innerHTML = query;
-                currentSearch = photos
+                currentSearch = photos;
+                savedToggle.checked = false;
+                searchToggle.checked = true;
                 render(photos);
                 attachHistory(query, photos)
             }).then(()=> {
