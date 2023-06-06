@@ -244,9 +244,17 @@ body {
   margin-right: 15px;
 }
 
+#history-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+
 #history-container {
-  margin-top: 20px;
-  overflow: auto;
+  margin-top: 5px;
+  overflow: scroll;
   height: 45px;
   width: auto;
   border: solid 2px rgb(67, 66, 66);
@@ -355,7 +363,7 @@ body {
   margin-top: 10px;
   font-size: 16px;
   width: auto;
-  min-width: 30vw;
+  min-width: 32vw;
   height: auto;
   border: 2px solid rgb(43, 40, 40);
   background-color: white;
@@ -382,11 +390,8 @@ body {
   transition: height 0.3s ease-in-out;
 }
 
-.hidden {
-  display: none;
-}
-
 #clicked {
+  z-index: 8;
   height: 500px;
   width: 800px;
   border-radius: 0;
@@ -400,11 +405,24 @@ body {
   margin-top: 10px;
   font-size: 16px;
   width: auto;
-  min-width: 30vw;
+  min-width: 32vw;
   height: auto;
   border: 2px solid rgb(43, 40, 40);
   background-color: white;
   border-radius: 0 0 5px 5px;
+}
+
+#clicked > .img-info > p {
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+#open {
+  position: absolute;
+  z-index: 5;
+  height: 70vh;
+  width: 82vw;
+  background-color: none;
 }
 
 h1 {

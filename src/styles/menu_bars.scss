@@ -101,10 +101,17 @@ body {
 #selection-form>select {
     margin-right: 15px;
 }
+#history-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
 
 #history-container {
-    margin-top: 20px;
-    overflow: auto;
+    margin-top: 5px;
+    overflow: scroll;
     height: 45px;
     width: auto;
     border: solid 2px rgb(67, 66, 66);

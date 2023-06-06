@@ -18,9 +18,21 @@ const getImgNum = (photos) => (Object.keys(photos).length);
     const photos =createPhotos(values.flat())
     console.log(photos, "initial photos")
     render(photos)
+    searchHistory["dress"] = photos;
+}));
+
+(Promise.all([TEST.harvard("boots",10), TEST.cleveland("boots",10), TEST.chicago("boots",10)]).then((values) => {
+    const photos = createPhotos(values.flat())
+    searchHistory["boots"] = photos;
+}));
+
+(Promise.all([TEST.harvard("suit",7), TEST.cleveland("suit",7), TEST.chicago("suit",7)]).then((values) => {
+    const photos = createPhotos(values.flat())
+    searchHistory["suit"] = photos;
 }));
 
 const display = document.querySelector('#img-container')
+const clickModal = document.querySelector('.click-modal');
 let open = false;
 display.addEventListener('click',  e => {
 
@@ -30,9 +42,11 @@ display.addEventListener('click',  e => {
 
     if (!open) {
         parentDiv.id = 'clicked';
+        clickModal.id = "open";
         open = true;
     } else if (open && parentDiv.id === "clicked") {
         parentDiv.removeAttribute('id');
+        clickModal.removeAttribute('id');
         open = false;
     }
         
@@ -52,8 +66,6 @@ const observer = new MutationObserver((mutationsList) => {
 observer.observe(document, { subtree: true, childList: true });
 
 const render = (obj) => {
-    // let lowerText = document.getElementById("below-display-text")
-    // lowerText.innerHTML = "Once you move your mouse away from the photo array, <br> it will reset and the description will disappear."
     const imgNum = getImgNum(obj)
 
     for (let i = 0; i < imgNum; i++) {
@@ -79,15 +91,19 @@ const render = (obj) => {
     }
 }
 const historyContainer = document.getElementById('history-container');
-const searchHistory = {
-    "boots": [TEST.harvard("boots"), TEST.cleveland("boots"), TEST.chicago("boots")],
-    "suit": [TEST.harvard("suit"), TEST.cleveland("suit"), TEST.chicago("suit")],
-    "dress": [TEST.harvard("dress"), TEST.cleveland("dress"), TEST.chicago("dress")]
-};
+const searchHistory = {};
 
 historyContainer.addEventListener("click", e => {
     const query = e.target.textContent.trim()
     console.log(searchHistory[query]);
+
+    while (display.firstChild) {
+        display.removeChild(display.firstChild);
+    }
+
+    render(searchHistory[query])
+    title.innerHTML = query;
+    lowerText.innerHTML = `Depictions of "${query}" in art from Museum Open APIs.`;
 })
 const attachHistory = (query, fetchArr) => {
     searchHistory[query] = fetchArr
@@ -161,7 +177,7 @@ form.addEventListener("submit", (e) => {
                 console.log(title, "title")
                 console.log(photos, "photos")
                 render(photos);
-                attachHistory(query, fetchArr)
+                attachHistory(query, photos)
             }).then(()=> {
                 lowerText.innerHTML = `Depictions of "${query}" in art from Museum Open APIs.`;
                 searchBar.value = '';
