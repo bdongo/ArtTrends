@@ -267,6 +267,26 @@ body {
   margin-bottom: 5px;
 }
 
+#view-toggle {
+  margin-top: 15px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+#view-toggle > label {
+  width: 85px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#view-toggle > label > input {
+  accent-color: rgb(67, 66, 66);
+}
+
 #page {
   height: 75vh;
   width: 100vw;
