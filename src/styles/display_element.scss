@@ -6,6 +6,10 @@
     align-items: center;
 }
 
+input {
+    accent-color: rgb(67, 66, 66);
+}
+
 #display-element {
     height: auto;
     width: 80vw;
@@ -158,6 +162,26 @@
     margin-left: 5px;
     margin-bottom: 5px;
 }
+
+#clicked>.img-info > label {
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(43, 40, 40);
+    border-radius: 4px;
+    padding: 2px;
+}
+
+#clicked>.img-info>label > input {
+    accent-color: rgb(67, 66, 66);
+}
+
+.bi {
+  color: rgb(43, 40, 40);
+}
+
+
 
 .click-modal {
     opacity: 0;

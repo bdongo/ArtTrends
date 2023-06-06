@@ -9,17 +9,67 @@ let query = "";
 
 const savedPhotos = [];
 let currentSearch = [];
+let view = [];
 let clickedPhoto = null;
-
+const searchHistory = {};
+let open = false;
 
 const getImgNum = (photos) => (Object.keys(photos).length);
 
+const render = (obj) => {
+    const imgNum = getImgNum(obj)
+
+    for (let i = 0; i < imgNum; i++) {
+        const newElement = document.createElement('div');
+        newElement.dataset.id = i;
+        newElement.className = "img-card"
+        const img = document.createElement('img');
+        img.src = obj[i].url;
+        const desc = document.createElement('p');
+        desc.innerHTML = obj[i].description;
+        const source = document.createElement('p');
+        source.innerHTML = obj[i].source;
+        const date = document.createElement('p');
+        date.innerHTML = obj[i].date;
+        const saveCheck = document.createElement('input');
+        saveCheck.type = 'checkbox';
+        saveCheck.addEventListener("change", checkboxHandler)
+
+        saveCheck.className = 'save-checkbox';
+
+        const saveLabel = document.createElement('label');
+        saveLabel.textContent = 'saved';
+        saveLabel.htmlFor = 'save-checkbox';
+        if (savedPhotos.includes(obj[i])) {
+            saveCheck.checked = true;
+        }
+        saveLabel.appendChild(saveCheck)
+        const info = document.createElement('div');
+        info.className = "img-info"
+        info.appendChild(desc);
+        info.appendChild(source);
+        info.appendChild(date);
+        info.appendChild(saveLabel);
+        newElement.appendChild(img);
+        newElement.appendChild(info);
+        display.appendChild(newElement);
+    }
+    view = obj;
+}
+
+const checkboxHandler = (e) => {
+    if (e.target.checked) {
+        savedPhotos.push(clickedPhoto)
+    } else {
+        const idx = savedPhotos.indexOf(clickedPhoto)
+        savedPhotos.splice(idx, 1);
+    }
+};
+
 (Promise.all([TEST.harvard("dress"), TEST.cleveland("dress"), TEST.chicago("dress")]).then((values) => {
     // shuffle will take place here
-    console.log("in here")
     const photos =createPhotos(values.flat())
     currentSearch = photos;
-    console.log(photos, "initial photos")
     render(photos)
     searchHistory["dress"] = photos;
 }));
@@ -41,12 +91,12 @@ const display = document.querySelector('#img-container')
 const clickModal = document.querySelector('.click-modal');
 
 viewToggle.addEventListener("click", e => {
-    console.log(e.target)
 
     if (e.target.id === "search-toggle") {
         // if (searchToggle.checked ) return;
-
+        view = currentSearch;
         clickModal.classList.add('hidden');
+        open = false;
 
         savedToggle.checked = false;
         searchToggle.checked = true;
@@ -60,13 +110,14 @@ viewToggle.addEventListener("click", e => {
     } else if (e.target.id === "saved-toggle") {
 
         clickModal.classList.add('hidden');
+        open = false;
 
         if (savedPhotos.length === 0) {
             savedToggle.checked = false;
-            console.log("error")
         } else {
             savedToggle.checked = true;
             searchToggle.checked = false;
+            view = savedPhotos;
 
             while (display.firstChild) {
                 display.removeChild(display.firstChild);
@@ -81,32 +132,26 @@ viewToggle.addEventListener("click", e => {
 
 clickModal.addEventListener('click', e => {
     const target = e.target
-    console.log(target)
     if (target.id === "close-modal" || target.closest("#close-modal")) {
-        console.log("closemodal")
         const openCard = document.querySelector('#clicked')
-        console.log(openCard, "opencard")
         openCard.removeAttribute('id');
         clickModal.removeAttribute('id');
         clickModal.classList.add('hidden');
         open = false;
-    } else if (target.id === "add-button" || target.closest("#add-button")) {
-        savedPhotos.push(clickedPhoto)
-       console.log(savedPhotos)
-       clickedPhoto = null;
-    }
+    } 
 })
-let open = false;
+
+
+
 display.addEventListener('click',  e => {
 
     if (e.target.tagName !== 'IMG') return;
 
     const card = e.target.parentNode;
-    console.log(card, "card")
 
     if (!open) {
         card.id = 'clicked';
-        clickedPhoto = currentSearch[card.dataset.id]
+        clickedPhoto = view[card.dataset.id]
         clickModal.id = "open";
         clickModal.classList.remove('hidden');
         open = true;
@@ -132,37 +177,12 @@ const observer = new MutationObserver((mutationsList) => {
 
 observer.observe(document, { subtree: true, childList: true });
 
-const render = (obj) => {
-    const imgNum = getImgNum(obj)
 
-    for (let i = 0; i < imgNum; i++) {
-        const newElement = document.createElement('div');
-        newElement.dataset.id = i;
-        newElement.className = "img-card"
-        const img = document.createElement('img');
-        img.src = obj[i].url;
-        const desc = document.createElement('p');
-        desc.innerHTML = obj[i].description;
-        const source = document.createElement('p');
-        source.innerHTML = obj[i].source;
-        const date = document.createElement('p');
-        date.innerHTML = obj[i].date;
-        const info = document.createElement('div');
-        info.className = "img-info"
-        info.appendChild(desc);
-        info.appendChild(source);
-        info.appendChild(date);
-        newElement.appendChild(img);
-        newElement.appendChild(info);
-        display.appendChild(newElement);
-    }
-}
 const historyContainer = document.getElementById('history-container');
-const searchHistory = {};
+
 
 historyContainer.addEventListener("click", e => {
     const query = e.target.textContent.trim()
-    console.log(searchHistory[query]);
 
     while (display.firstChild) {
         display.removeChild(display.firstChild);
@@ -232,17 +252,12 @@ form.addEventListener("submit", (e) => {
             display.removeChild(display.firstChild);
         }
 
-        console.log(fetchArr, "fetchArr")
-
         Promise.all(fetchArr)
             .then((values) => {
-                console.log(values, "values")
                const photos = createPhotos(values.flat());
                return photos
             }).then((photos)=>{
                 title.innerHTML = query;
-                console.log(title, "title")
-                console.log(photos, "photos")
                 currentSearch = photos
                 render(photos);
                 attachHistory(query, photos)
@@ -257,9 +272,6 @@ form.addEventListener("submit", (e) => {
 
 function createPhotos(input) {
     const photos = []
-    // for (let i = 0; i < input.length; i++) {
-    //     photos[i] = new Photo(input[i])
-    // }
     input.map(data => photos.push(new Photo(data)))
     return photos
 }
