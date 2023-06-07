@@ -76,7 +76,7 @@ const checkboxHandler = (e) => {
     render(photos)
     searchHistory["dress"] = photos;
     const cards = document.querySelectorAll('.img-card')
-    const card = cards[7]
+    const card = cards[0]
     card.id = 'clicked';
     clickModal.id = "open";
     clickModal.classList.remove('hidden');
@@ -91,6 +91,28 @@ const checkboxHandler = (e) => {
     const photos = createPhotos(values.flat())
     searchHistory["suit"] = photos;
 }));
+
+const introModal = document.querySelector(".intro-modal")
+introModal.addEventListener("click", e => {
+    console.log(introModal)
+    introModal.id = "hidden"
+    const openCard = document.querySelector('#clicked')
+    openCard.removeAttribute('id');
+    clickModal.removeAttribute('id');
+    clickModal.classList.add('hidden');
+    open = false;
+})
+
+const infoButton = document.getElementById("info-button")
+
+infoButton.addEventListener("click", e => {
+    introModal.removeAttribute('id');
+    const cards = document.querySelectorAll('.img-card')
+    const card = cards[0]
+    card.id = 'clicked';
+    clickModal.id = "open";
+    clickModal.classList.remove('hidden');
+})
 
 const viewToggle = document.querySelector('#view-toggle');
 const searchToggle = document.querySelector('#search-toggle');

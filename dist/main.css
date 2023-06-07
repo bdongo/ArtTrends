@@ -305,6 +305,7 @@ body {
   position: absolute;
   bottom: 0;
   right: 0;
+  cursor: pointer;
 }
 
 input {
@@ -586,6 +587,7 @@ h2 {
 }
 
 .modal-page {
+  cursor: pointer;
   position: relative;
   border-radius: 8px;
   background-color: white;
@@ -636,4 +638,8 @@ h2 {
   bottom: 10px;
   left: -10px;
   rotate: 45;
+}
+
+#hidden {
+  display: none;
 }

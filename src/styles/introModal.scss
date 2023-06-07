@@ -11,6 +11,7 @@
 }
 
 .modal-page {
+    cursor: pointer;
     position: relative;
     border-radius: 8px;
     background-color: white;
@@ -64,4 +65,8 @@
         left: -10px;
         rotate: 45;
     }
+}
+
+#hidden {
+    display: none;
 }
