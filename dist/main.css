@@ -615,7 +615,7 @@ h2 {
 }
 
 .info-div {
-  padding: 20px;
+  padding: 15px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -623,7 +623,7 @@ h2 {
 }
 .info-div p {
   height: 2vh;
-  padding: 10px;
+  padding: 9px;
   border: 2px solid rgb(43, 40, 40);
   border-radius: 5px;
   margin-bottom: 2px;
@@ -635,8 +635,8 @@ h2 {
   transform: rotate(45deg);
   font-size: 40px;
   position: absolute;
-  bottom: 10px;
-  left: -10px;
+  bottom: 8px;
+  left: -15px;
   rotate: 45;
 }
 
