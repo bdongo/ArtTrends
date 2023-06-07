@@ -632,6 +632,7 @@ h2 {
 }
 .info-div .bi-arrow-up-short {
   font-size: 40px;
+  animation: bounce 2s infinite;
 }
 .info-div .bi-arrow-down-short {
   transform: rotate(45deg);
@@ -639,9 +640,20 @@ h2 {
   position: absolute;
   bottom: 8px;
   left: -15px;
-  rotate: 45;
+  animation: bounce 3s infinite;
 }
 
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 #hidden {
   display: none;
 }
