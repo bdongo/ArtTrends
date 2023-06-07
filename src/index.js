@@ -75,6 +75,11 @@ const checkboxHandler = (e) => {
     currentSearch = photos;
     render(photos)
     searchHistory["dress"] = photos;
+    const cards = document.querySelectorAll('.img-card')
+    const card = cards[0]
+    card.id = 'clicked';
+    clickModal.id = "open";
+    clickModal.classList.remove('hidden');
 }));
 
 (Promise.all([TEST.harvard("boots",10), TEST.cleveland("boots",10), TEST.chicago("boots",10)]).then((values) => {
@@ -86,6 +91,31 @@ const checkboxHandler = (e) => {
     const photos = createPhotos(values.flat())
     searchHistory["suit"] = photos;
 }));
+
+const introModal = document.querySelector(".intro-modal")
+introModal.addEventListener("click", e => {
+    console.log(introModal)
+    introModal.id = "hidden"
+    const openCard = document.querySelector('#clicked')
+    openCard.removeAttribute('id');
+    clickModal.removeAttribute('id');
+    clickModal.classList.add('hidden');
+    open = false;
+})
+
+const infoButton = document.getElementById("info-button")
+
+infoButton.addEventListener("click", e => {
+    introModal.removeAttribute('id');
+    let card = document.getElementById("clicked")
+    if (!card) {
+        const cards = document.querySelectorAll('.img-card')
+        card = cards[0]
+        card.id = 'clicked';
+        clickModal.id = "open";
+        clickModal.classList.remove('hidden');
+    }
+})
 
 const viewToggle = document.querySelector('#view-toggle');
 const searchToggle = document.querySelector('#search-toggle');
@@ -143,7 +173,6 @@ viewToggle.addEventListener("click", e => {
             lowerText.innerHTML = `Depictions of "saved photos" in art from Museum Open APIs.`;
             savedToggle.checked = true;
             searchToggle.checked = false;
-            view = savedPhotos;
 
             while (display.firstChild) {
                 display.removeChild(display.firstChild);

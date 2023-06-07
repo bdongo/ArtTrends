@@ -6,13 +6,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./dist/main.css">
     <script src="./dist/main.js" defer></script>
     <title>Art&Fashion</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 <body>
+    <div class="intro-modal">
+        <div class="modal-page">
+            <i class="bi bi-file-excel"></i>
+            <div class="info-div">
+            <i class="bi bi-arrow-up-short"></i>
+            <p>Above is the <span class="bi bi-input-cursor-text"></span> search/ <span class="bi bi-folder-fill"></span> saved toggle, search bar <i class="bi bi-search"></i> with filters and search history <i class="bi bi-search"></i></p>
+            <p>Use the search bar <i class="bi bi-search"></i> to query museum database <i class="bi bi-database"></i> for historical depictions of garments</p>
+            <p>Select which and how many <span class="bi bi-5-square"></span> to recieve from each museum <i class="bi bi-database"></i></p>
+            <p>Don't know what to look up? Check the search history <i class="bi bi-search"></i> and return to old searches</p>
+            <p>Toggle between <span class="bi bi-input-cursor-text"></span> search and your <span class="bi bi-folder-fill"></span> saved photos</p>
+            </div>
+            <div class="modal-bottomrow">
+                <div class="info-div">
+                    <i class="bi bi-arrow-down-short"></i>
+                    <p>Hovering will expand <i class="bi bi-arrows-angle-expand"></i> and shrink <i class="bi bi-arrows-angle-contract"></i> the art pieces</p>
+                    <p>If something catches your eye, click <i class="bi bi-hand-index"></i> it to toggle open or close</p>
+                    <p>Information will be displayed for you underneath</p>
+                    <p>Save photos <i class="bi bi-check-square-fill"></i> using the check box below the art information</p>
+                </div>
+                <div class="info-div">
+                    <p>Click <i class="bi bi-hand-index"></i> anywhere to close this popup</p>
+                    <p>To view again, click the <i class="bi bi-info-square-fill"></i> in the corner</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="top-bar">
         <div id="menu-border">
             <div id="menu-title">
@@ -187,6 +213,7 @@
     </div>
     
     <div id="page">
+        <i class="bi bi-info-square-fill" id="info-button"></i>
         <div id="display-element">
             <div id="above-display-text">       
                 <h1 id="query-title">loading...</h1>
