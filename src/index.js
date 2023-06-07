@@ -107,11 +107,14 @@ const infoButton = document.getElementById("info-button")
 
 infoButton.addEventListener("click", e => {
     introModal.removeAttribute('id');
-    const cards = document.querySelectorAll('.img-card')
-    const card = cards[0]
-    card.id = 'clicked';
-    clickModal.id = "open";
-    clickModal.classList.remove('hidden');
+    let card = document.getElementById("clicked")
+    if (!card) {
+        const cards = document.querySelectorAll('.img-card')
+        card = cards[0]
+        card.id = 'clicked';
+        clickModal.id = "open";
+        clickModal.classList.remove('hidden');
+    }
 })
 
 const viewToggle = document.querySelector('#view-toggle');
