@@ -589,9 +589,13 @@ h2 {
   position: relative;
   border-radius: 8px;
   background-color: white;
-  height: 50vh;
-  width: 50vw;
+  height: 60vh;
+  width: 60vw;
   border: 2px solid rgb(43, 40, 40);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .modal-page .bi-arrow-90deg-up {
   font-size: 20px;
@@ -603,10 +607,33 @@ h2 {
   top: 0;
   right: 0;
 }
-.modal-page .bi-info-circle-fill {
-  padding: 7px;
-  font-size: 15px;
+
+.modal-bottomrow {
+  display: flex;
+}
+
+.info-div {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  position: relative;
+}
+.info-div p {
+  height: 2vh;
+  padding: 10px;
+  border: 2px solid rgb(43, 40, 40);
+  border-radius: 5px;
+  margin-bottom: 2px;
+}
+.info-div .bi-arrow-up-short {
+  font-size: 40px;
+}
+.info-div .bi-arrow-down-short {
+  transform: rotate(45deg);
+  font-size: 40px;
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 10px;
+  left: -10px;
+  rotate: 45;
 }

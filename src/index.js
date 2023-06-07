@@ -148,7 +148,6 @@ viewToggle.addEventListener("click", e => {
             lowerText.innerHTML = `Depictions of "saved photos" in art from Museum Open APIs.`;
             savedToggle.checked = true;
             searchToggle.checked = false;
-            view = savedPhotos;
 
             while (display.firstChild) {
                 display.removeChild(display.firstChild);
