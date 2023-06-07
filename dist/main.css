@@ -521,15 +521,17 @@ input {
   width: calc(100% / var(--img-card-count));
   animation-duration: 3s;
   animation-name: slidein;
-  cursor: pointer;
 }
 .error-card p {
   font-size: 22px;
+  margin-bottom: 5px;
+  cursor: pointer;
 }
 .error-card div {
   height: 60px;
   width: 60px;
   font-size: 60px;
+  cursor: pointer;
 }
 
 h1 {

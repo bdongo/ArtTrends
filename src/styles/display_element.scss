@@ -243,16 +243,18 @@ input {
     width: calc(100% / var(--img-card-count));
     animation-duration: 3s;
     animation-name: slidein;
-    cursor: pointer;
 
     p {
         font-size: 22px;
+        margin-bottom: 5px;
+        cursor: pointer;
     }
 
     div {
         height: 60px;
         width: 60px;
         font-size: 60px;
+        cursor: pointer;
     }
 }
 

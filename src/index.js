@@ -105,7 +105,7 @@ introModal.addEventListener("click", e => {
 
 const infoButton = document.getElementById("info-button")
 
-infoButton.addEventListener("click", e => {
+const openInfoModal = e => {
     introModal.removeAttribute('id');
     let card = document.getElementById("clicked")
     if (!card) {
@@ -115,7 +115,9 @@ infoButton.addEventListener("click", e => {
         clickModal.id = "open";
         clickModal.classList.remove('hidden');
     }
-})
+}
+
+infoButton.addEventListener("click", openInfoModal)
 
 const viewToggle = document.querySelector('#view-toggle');
 const searchToggle = document.querySelector('#search-toggle');
@@ -161,12 +163,18 @@ viewToggle.addEventListener("click", e => {
             newElement.className = "error-card"
             const message = document.createElement('p');
             message.innerHTML = "nothing saved yet!";
+            const needHelp = document.createElement('p');
+            needHelp.innerHTML = "need help? <i class='bi bi-info-square-fill'></i>";
 
             const icon = document.createElement('div');
             icon.className = "bi bi-folder-x";
             
+
             newElement.appendChild(icon);
             newElement.appendChild(message);
+            newElement.appendChild(needHelp)
+            
+            newElement.addEventListener("click", openInfoModal)
             display.appendChild(newElement);
         } else {
             title.innerHTML = "saved photos";
