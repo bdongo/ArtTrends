@@ -173,7 +173,7 @@ viewToggle.addEventListener("click", e => {
             newElement.appendChild(icon);
             newElement.appendChild(message);
             newElement.appendChild(needHelp)
-            
+
             newElement.addEventListener("click", openInfoModal)
             display.appendChild(newElement);
         } else {
@@ -195,13 +195,11 @@ viewToggle.addEventListener("click", e => {
 
 clickModal.addEventListener('click', e => {
     const target = e.target
-    if (target.id === "close-modal" || target.closest("#close-modal")) {
-        const openCard = document.querySelector('#clicked')
-        openCard.removeAttribute('id');
-        clickModal.removeAttribute('id');
-        clickModal.classList.add('hidden');
-        open = false;
-    } 
+    const openCard = document.querySelector('#clicked')
+    openCard.removeAttribute('id');
+    clickModal.removeAttribute('id');
+    clickModal.classList.add('hidden');
+    open = false;
 })
 
 
