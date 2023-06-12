@@ -19,31 +19,48 @@ function Photo(input){
 Example of the data scraping from one fetch response.
 
 ```javascript
- if (data.records[i].baseimageurl) {
-    let dateCheck = parseInt(data.records[i].date.split("-")[0])
-    if (dateCheck === 0) {
-        dateCheck = 1
-    }
+export const harvard = async (query, num = 5) => {
+    let output = [];
 
-    let sourceInfo;
-    if (data.records[i].copyright) {
-        sourceInfo = `Harvard Art Museums API/ ${data.records[i].copyright}`
-    } else {
-        sourceInfo = "Harvard Art Museums API"
-    }
-    let desc;
-    if (data.records[i].description) {
-        desc = data.records[i].description;
-    } else {
-        desc = 1;
-    }
-
-    output.push({ 
-        url: data.records[i].baseimageurl,
-        date: dateCheck,
-        source: sourceInfo,
-        description: desc
+    let res = await fetch(`https://api.harvardartmuseums.org/image?q=${query}&size=${num}&apikey=12403398-3c09-42ff-af07-f434bfd000a1&hasimage=true&permissionlevel=0`, {
+        headers: { "Accept": "application/json" }
     })
+
+    if (res.ok) {
+        let data = await res.json()
+    
+        for (let i = 0; i < data.records.length; i++) {
+    
+            if (data.records[i].baseimageurl) {
+                let dateCheck = parseInt(data.records[i].date?.split("-")[0])
+                if (dateCheck === 0) {
+                    dateCheck = 1
+                }
+    
+                let sourceInfo;
+                if (data.records[i].copyright) {
+                    sourceInfo = `Harvard Art Museums API/ ${data.records[i].copyright}`
+                } else {
+                    sourceInfo = "Harvard Art Museums API"
+                }
+                let desc;
+                if (data.records[i].description) {
+                    desc = data.records[i].description;
+                } else {
+                    desc = 1;
+                }
+    
+                output.push({ 
+                    url: data.records[i].baseimageurl,
+                    date: dateCheck,
+                    source: sourceInfo,
+                    description: desc
+                })
+            }
+        }
+    
+        return output;
+    }
 }
 ```
 
