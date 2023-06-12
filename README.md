@@ -19,39 +19,37 @@ function Photo(input){
 Example of the data scraping from one fetch response.
 
 ```javascript
-export const harvard = async (query, num = 5) => {
+export const cleveland = async (query, num = 5) => {
     let output = [];
 
-    let res = await fetch(`https://api.harvardartmuseums.org/image?q=${query}&size=${num}&apikey=12403398-3c09-42ff-af07-f434bfd000a1&hasimage=true&permissionlevel=0`, {
+    let res = await fetch(`https://openaccess-api.clevelandart.org/api/artworks/?q=${query}&has_image=1&limit=${num}&created_after=1400`, {
         headers: { "Accept": "application/json" }
     })
-
-    if (res.ok) {
+    if (res.ok) {   
         let data = await res.json()
     
-        for (let i = 0; i < data.records.length; i++) {
+        for (let i = 0; i < data.data.length; i++) {
     
-            if (data.records[i].baseimageurl) {
-                let dateCheck = parseInt(data.records[i].date?.split("-")[0])
+            if (data.data[i].images.web.url) {
+                let dateCheck = data.data[i].creation_date_earliest
                 if (dateCheck === 0) {
                     dateCheck = 1
                 }
-    
                 let sourceInfo;
-                if (data.records[i].copyright) {
-                    sourceInfo = `Harvard Art Museums API/ ${data.records[i].copyright}`
+                if (data.data[i].creditline) {
+                    sourceInfo = `The Cleveland Museum of Art API/ ${data.data[i].creditline}`
                 } else {
-                    sourceInfo = "Harvard Art Museums API"
+                    sourceInfo = "The Cleveland Museum of Art API"
                 }
+    
                 let desc;
-                if (data.records[i].description) {
-                    desc = data.records[i].description;
+                if (data.data[i].tombstone) {
+                    desc = data.data[i].tombstone;
                 } else {
                     desc = 1;
                 }
-    
                 output.push({ 
-                    url: data.records[i].baseimageurl,
+                    url: data.data[i].images.web.url, 
                     date: dateCheck,
                     source: sourceInfo,
                     description: desc
